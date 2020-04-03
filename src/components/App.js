@@ -1,9 +1,18 @@
 import React from 'react';
+import LogIn from './LogIn';
+import SignUp from './SignUp';
+import Home from './Home';
+import Survey from './Survey';
+
+
 
 function App() {
   return (
     <div className="App">
-    <h1>Hey Josh</h1>
+      <LogIn />
+      <SignUp />
+      <Home />
+      <Survey />
     </div>
   );
 }
