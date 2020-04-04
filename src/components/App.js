@@ -1,9 +1,11 @@
 import React from 'react';
+import Nav from './Nav';
 import LogIn from './LogIn';
+import ForgetPass from './ForgetPass';
 import SignUp from './SignUp';
 import Home from './Home';
 import Survey from './Survey';
-
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 
 // import Navbar from 'react-bootstrap/Navbar';
 // import Nav from 'react-bootstrap/Nav';
@@ -12,18 +14,11 @@ import Survey from './Survey';
 // import FormControl from 'react-bootstrap/FormControl';
 // import Button from 'react-bootstrap/Button';
 
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-  Container
-} from "react-bootstrap";
+
 
 function App() {
   return (
+<<<<<<< HEAD
     <div className="App">
           <Navbar bg="primary" variant="dark" expand="lg" className="mb-4">
           <Container>
@@ -49,6 +44,20 @@ function App() {
       </Container>
 
     </div>
+=======
+    <Router>
+      <div className="App">
+        <Nav />
+        <Switch>
+          <Route exact path="/" component={ LogIn } />
+          <Route path="/signup" component={ SignUp } />
+          <Route path="/forgetpass" component={ ForgetPass } />
+          <Route path="/home" component={ Home } />
+          <Route path="/survey" component={ Survey } />
+        </Switch>
+      </div>
+    </Router>
+>>>>>>> ef3a9868281155eb518b9526eb64bf980cf2d0e1
   );
 }
 
