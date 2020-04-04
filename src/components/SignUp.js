@@ -38,7 +38,8 @@ class SignUpForm extends Component {
       lastname: '',
       email: '',
       password: '',
-      confirmpass: ''
+      confirmpass: '',
+      organization: ''
     };
       this._handleChange = this._handleChange.bind(this);
       this._handleSubmit = this._handleSubmit.bind(this);
@@ -53,7 +54,7 @@ _handleChange( event ) {
 _handleSubmit(event) {
   event.preventDefault();
   this.props.onSubmit(this.state);
-  this.setState({firstname: '', lastname: '', email: '', password: '', confirmpass: '' });
+  this.setState({firstname: '', lastname: '', email: '', password: '', confirmpass: '', organization: '' });
 }
 
   render() {
@@ -76,9 +77,10 @@ _handleSubmit(event) {
             <input name="confirmpass" type="text" placeholder="Confirm password" value={ this.state.confirmpass } onChange={ this._handleChange } required />
           </div>
           <div>
-
+            <input name="organization" type="text" placeholder="Organization" value={ this.state.organization } onChange={ this._handleChange } />
+          </div>
+          <div>
               <input type="submit" value="SIGN UP" />
-
           </div>
         </form>
       </div>

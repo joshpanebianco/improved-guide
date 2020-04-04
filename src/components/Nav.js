@@ -28,11 +28,14 @@ function Navigation() {
             <Link className="nav-style" to="/signup">
               <li>SIGN UP</li>
             </Link>
-            <Link className="nav-style" to="home">
+            <Link className="nav-style" to="/home">
               <li>HOME</li>
             </Link>
-            <Link className="nav-style" to="survey">
+            <Link className="nav-style" to="/survey">
               <li>SURVEY</li>
+            </Link>
+            <Link className="nav-style" to="/campaign">
+              <li>CAMPAIGN</li>
             </Link>
         </Nav>
 
