@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
 
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+  Container,
+  NavItem
+} from "react-bootstrap";
+
 
 
 class SignUp extends Component {
@@ -22,6 +33,7 @@ _saveInfo(content) {
   render() {
     return(
       <div>
+        <h3>Create A New Account</h3>
         <SignUpForm onSubmit={ this._saveInfo }/>
       </div>
     );
@@ -61,26 +73,38 @@ _handleSubmit(event) {
     return (
       <div>
         <form onSubmit={ this._handleSubmit }>
+         <Form.Group className="w-50">
+            <Form.Label>First Name</Form.Label>
+            <Form.Control name="firstname" type="text" placeholder="First name" value={ this.state.firstname } onChange={ this._handleChange } autoFocus required />
+         </Form.Group>
+
+         <Form.Group className="w-50">
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control name="firstname" type="text" placeholder="First name" value={ this.state.firstname } onChange={ this._handleChange } autoFocus required />
+         </Form.Group>
+
+          <Form.Group className="w-50">
+            <Form.Label>Email</Form.Label>
+            <Form.Control name="email" type="text" placeholder="Email" value={ this.state.email } onChange={ this._handleChange } required />
+          </Form.Group>
+
+          <Form.Group className="w-50">
+            <Form.Label>Password</Form.Label>
+            <Form.Control name="password" type="text" placeholder="Password" value={ this.state.password } onChange={ this._handleChange } required />
+          </Form.Group>
+
+          <Form.Group className="w-50">
+            <Form.Label>Confirm Password</Form.Label>
+            <Form.Control name="confirmpass" type="text" placeholder="Confirm password" value={ this.state.confirmpass } onChange={ this._handleChange } required />
+          </Form.Group>
+
+          <Form.Group className="w-50">
+            <Form.Label>Organization</Form.Label>
+            <Form.Control name="organization" type="text" placeholder="Organization" value={ this.state.organization } onChange={ this._handleChange } required />
+          </Form.Group>
+
           <div>
-            <input name="firstname" type="text" placeholder="First name" value={ this.state.firstname } onChange={ this._handleChange } autoFocus required />
-          </div>
-          <div>
-            <input name="lastname" type="text" placeholder="Last name" value={ this.state.lastname } onChange={ this._handleChange } required />
-          </div>
-          <div>
-            <input name="email" type="text" placeholder="Email" value={ this.state.email } onChange={ this._handleChange } required />
-          </div>
-          <div>
-            <input name="password" type="text" placeholder="Password" value={ this.state.password } onChange={ this._handleChange } required />
-          </div>
-          <div>
-            <input name="confirmpass" type="text" placeholder="Confirm password" value={ this.state.confirmpass } onChange={ this._handleChange } required />
-          </div>
-          <div>
-            <input name="organization" type="text" placeholder="Organization" value={ this.state.organization } onChange={ this._handleChange } />
-          </div>
-          <div>
-              <input type="submit" value="SIGN UP" />
+              <input type="submit" value="SIGN UP" className="btn btn-success mb-3"/>
           </div>
         </form>
       </div>

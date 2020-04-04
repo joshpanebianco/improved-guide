@@ -8,21 +8,23 @@ import Survey from './Survey';
 import Campaign from './Campaign';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
-
     <Router>
       <div className="App">
         <Nav />
-        <Switch>
-          <Route exact path="/" component={ LogIn } />
-          <Route path="/signup" component={ SignUp } />
-          <Route path="/forgetpass" component={ ForgetPass } />
-          <Route path="/home" component={ Home } />
-          <Route path="/survey" component={ Survey } />
-          <Route path="/campaign" component={ Campaign } />
-        </Switch>
+        <Container>
+          <Switch>
+            <Route exact path="/" component={ LogIn } />
+            <Route path="/signup" component={ SignUp } />
+            <Route path="/forgetpass" component={ ForgetPass } />
+            <Route path="/home" component={ Home } />
+            <Route path="/survey" component={ Survey } />
+            <Route path="/campaign" component={ Campaign } />
+          </Switch>
+        </Container>
       </div>
     </Router>
   );

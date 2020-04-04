@@ -1,6 +1,7 @@
 import React from 'react';
-import './Nav.css';
+// import './Nav.css';
 import { Link } from 'react-router-dom';
+
 import {
   Navbar,
   Nav,
@@ -17,7 +18,9 @@ function Navigation() {
   return (
     <Navbar bg="primary" variant="dark" expand="lg" className="mb-4">
     <Container>
+      <Link to="home">
       <Navbar.Brand to="/">Project Two</Navbar.Brand>
+      </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto nav-links ">
@@ -39,8 +42,12 @@ function Navigation() {
             </Link>
         </Nav>
 
-          <Button className="mr-3" variant="dark">login</Button>
-          <Button variant="success">SignUp</Button>
+          <Link to="/">
+            <Button className="mr-3" variant="dark">login</Button>
+          </Link>
+          <Link to="/signup">
+            <Button variant="success" to="/signup">SignUp</Button>
+          </Link>
 
       </Navbar.Collapse>
       </Container>
