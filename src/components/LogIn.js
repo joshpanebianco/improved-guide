@@ -13,7 +13,6 @@ _saveInfo(content) {
   const allUserInfo = this.state.userinfo;
   allUserInfo.push(content);
 
-  // console.log(content);
 }
 
   render() {

@@ -15,7 +15,7 @@ _saveInfo(content) {
   console.log(content);
   const allUserInfo = this.state.signupinfo;
   allUserInfo.push(content);
-  // this.setSate({});
+  this.setState({signupinfo: allUserInfo});
 }
 
 
