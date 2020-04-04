@@ -29,7 +29,3 @@ function App() {
 }
 
 export default App;
-
-
-// Notes from Alex
-// import {Card} from "react-bootstrap"
