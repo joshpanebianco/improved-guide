@@ -37,8 +37,12 @@ function Navigation() {
             </Link>
         </Nav>
 
-          <Button className="mr-3" variant="dark">login</Button>
-          <Button variant="success">SignUp</Button>
+          <Link to="/">
+            <Button className="mr-3" variant="dark">login</Button>
+          </Link>
+          <Link to="/signup">
+            <Button variant="success" to="/signup">SignUp</Button>
+          </Link>
 
       </Navbar.Collapse>
       </Container>
