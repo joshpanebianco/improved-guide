@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+  Container,
+  NavItem
+} from "react-bootstrap";
+
 class LogIn extends Component {
 constructor() {
   super();
@@ -57,6 +68,7 @@ _handleSubmit(event) {
   render() {
     return(
       <div>
+       
         <form onSubmit={ this._handleSubmit }>
           <div>
             <input name="email" type="text" placeholder="Email" value={ this.state.email } onChange={ this._handleChangeEmail } autoFocus required />
@@ -70,6 +82,7 @@ _handleSubmit(event) {
 
           </div>
         </form>
+
       </div>
     );
   }
