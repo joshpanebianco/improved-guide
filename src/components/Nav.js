@@ -18,7 +18,7 @@ function Navigation() {
   return (
     <Navbar bg="primary" variant="dark" expand="lg" className="mb-4">
     <Container>
-      <Link to="/">
+      <Link to="home">
       <Navbar.Brand to="/">Project Two</Navbar.Brand>
       </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
