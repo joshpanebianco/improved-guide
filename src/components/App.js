@@ -14,7 +14,7 @@ function App() {
     <Router>
       <div className="App">
         <Nav />
-        <Container>
+        <Container className="pl-0">
           <Switch>
             <Route exact path="/" component={ LogIn } />
             <Route path="/signup" component={ SignUp } />

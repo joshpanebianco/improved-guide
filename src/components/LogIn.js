@@ -29,10 +29,10 @@ _saveInfo(content) {
   render() {
     return (
       <div>
-        <h2>LOG IN</h2>
+        <h3>Login</h3>
         <LoginForm onSubmit={ this._saveInfo }/>
         <Link to="/FogetPass">
-        <p>forgot password</p>
+        <p>Forgot Password</p>
         </Link>
       </div>
     );
@@ -67,19 +67,20 @@ _handleSubmit(event) {
   render() {
     return(
       <div>
-       
+
         <form onSubmit={ this._handleSubmit }>
-          <div>
-            <input name="email" type="text" placeholder="Email" value={ this.state.email } onChange={ this._handleChangeEmail } autoFocus required />
-          </div>
-          <div>
-            <input name="pass" type="text" placeholder="Password" value={ this.state.password } onChange={ this._handleChangePass } required />
-          </div>
-          <div>
 
-              <input type="submit" value="SIGN IN" />
+          <Form.Group controlId="formBasicEmail" className="w-50">
+              <Form.Label>Email</Form.Label>
+              <Form.Control name="email" type="text" placeholder="Email" value={ this.state.email } onChange={ this._handleChangeEmail } autoFocus required />
+          </Form.Group>
 
-          </div>
+          <Form.Group controlId="formBasicPassword" className="w-50">
+              <Form.Label>Password</Form.Label>
+              <Form.Control name="pass" type="text" placeholder="Password" value={ this.state.password } onChange={ this._handleChangePass } required />
+          </Form.Group>
+
+          <input variant="primary" type="submit" value="SIGN IN" className="btn btn-success mb-3" />
         </form>
 
       </div>
