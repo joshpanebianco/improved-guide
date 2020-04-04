@@ -35,7 +35,7 @@ function App() {
                 <Nav.Link href="#link">Link</Nav.Link>
               </Nav>
 
-                <Button className="mr-3" variant="dark">login</Button>
+                <Button href="login"className="mr-3" variant="dark">login</Button>
                 <Button variant="success">SignUp</Button>
 
             </Navbar.Collapse>
