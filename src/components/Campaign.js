@@ -47,17 +47,21 @@ _handleSubmit(event) {
       <div>
         <h3>Create Campaign</h3>
           <form onSubmit={ this._handleSubmit }>
-            <div>
-              <input name="campaign" type="text" placeholder="Campaign name" value={ this.state.campaign } onChange={ this._handleChange } required />
-            </div>
-            <div>
-              <input name="type" type="text" placeholder="Type" value={ this.state.type } onChange={ this._handleChange } />
-            </div>
+          <Form.Group className="w-50">
+            <Form.Label>Campaign Name</Form.Label>
+            <Form.Control name="campaign" type="text" placeholder="Campaign name" value={ this.state.campaign } onChange={ this._handleChange } required />
+          </Form.Group>
+
+          <Form.Group className="w-50">
+             <Form.Label>Type</Form.Label>
+             <Form.Control name="type" type="text" placeholder="Type" value={ this.state.type } onChange={ this._handleChange } />
+          </Form.Group>
+
             <div>
               <button>Add image</button>
             </div>
             <div>
-                <input type="submit" value="Create" />
+                <input type="submit" value="Create" className="btn btn-success mb-3"/>
             </div>
           </form>
       </div>
