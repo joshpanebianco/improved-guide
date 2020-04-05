@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+// import Slider from "react-slick";
 
 class Survey extends Component {
   constructor() {
@@ -44,6 +47,7 @@ class Gallery extends Component {
     this.state = {
       seen: '',
 
+
     }
     this._onClickSeen = this._onClickSeen.bind(this);
     this._onClickUnSeen = this._onClickUnSeen.bind(this);
@@ -70,9 +74,9 @@ class Gallery extends Component {
       <div>
         {this.props.image.map( (a) => <img src={ a.image } /> )}
         <div>
-        <form onSubmit={ this._onSubmit }>
-          <button onClick={ this._onClickSeen }>Seen</button>
-          <button onClick={ this._onClickUnSeen } >Not seen</button>
+          <form onSubmit={ this._onSubmit }>
+            <button onClick={ this._onClickSeen }>Seen</button>
+            <button onClick={ this._onClickUnSeen } >Not seen</button>
           </form>
         </div>
       </div>
