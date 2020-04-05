@@ -23,9 +23,9 @@ class SignUp extends Component {
   }
 
 _saveInfo(content) {
-  console.log(content);
+  const newUserInfo = {signupinfo: content};
   const allUserInfo = this.state.signupinfo;
-  allUserInfo.push(content);
+  allUserInfo.push(newUserInfo);
   this.setState({signupinfo: allUserInfo});
 }
 
@@ -80,7 +80,7 @@ _handleSubmit(event) {
 
          <Form.Group className="w-50">
             <Form.Label>Last Name</Form.Label>
-            <Form.Control name="lasttname" type="text" placeholder="Last name" value={ this.state.firstname } onChange={ this._handleChange } autoFocus required />
+            <Form.Control name="lastname" type="text" placeholder="Last name" value={ this.state.lastname } onChange={ this._handleChange } autoFocus required />
          </Form.Group>
 
           <Form.Group className="w-50">

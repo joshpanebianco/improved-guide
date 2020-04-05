@@ -55,12 +55,12 @@ class Gallery extends Component {
     }
 
 
-  _onClickSeen() {
+  _onClickSeen(event) {
     this.setState({seen: true});
 
   };
 
-  _onClickUnSeen() {
+  _onClickUnSeen(event) {
     this.setState({seen: false});
   };
 
@@ -76,7 +76,7 @@ class Gallery extends Component {
         <div>
           <form onSubmit={ this._onSubmit }>
             <button onClick={ this._onClickSeen }>Seen</button>
-            <button onClick={ this._onClickUnSeen } >Not seen</button>
+            <button onClick={ this._onClickUnSeen }>Not seen</button>
           </form>
         </div>
       </div>
