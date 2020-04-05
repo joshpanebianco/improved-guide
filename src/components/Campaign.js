@@ -1,4 +1,14 @@
 import React, { Component } from 'react';
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+  Container,
+  NavItem
+} from "react-bootstrap";
 
 class Campaign extends Component {
 constructor() {
@@ -20,13 +30,13 @@ saveCampaign(content) {
   render() {
     return (
       <div>
-        <Form onSubmit={ this.saveCampaign } />
+        <CreateForm onSubmit={ this.saveCampaign } />
       </div>
     );
   }
 }
 
-class Form extends Component {
+class CreateForm extends Component {
   constructor() {
     super();
     this.state = { campaign: '', type: '' };
@@ -48,20 +58,19 @@ _handleSubmit(event) {
         <h3>Create Campaign</h3>
           <form onSubmit={ this._handleSubmit }>
           <Form.Group className="w-50">
-            <Form.Label>Campaign Name</Form.Label>
-            <Form.Control name="campaign" type="text" placeholder="Campaign name" value={ this.state.campaign } onChange={ this._handleChange } required />
+             <Form.Label>Campaign</Form.Label>
+             <Form.Control name="campaign" type="text" placeholder="Campaign name" value={ this.state.campaign } onChange={ this._handleChange } autoFocus required />
           </Form.Group>
-
           <Form.Group className="w-50">
              <Form.Label>Type</Form.Label>
-             <Form.Control name="type" type="text" placeholder="Type" value={ this.state.type } onChange={ this._handleChange } />
+             <Form.Control name="type" type="text" placeholder="Type" value={ this.state.type } onChange={ this._handleChange } autoFocus required />
           </Form.Group>
 
             <div>
-              <button>Add image</button>
+              <button className="btn btn-success mb-3" >Add image</button>
             </div>
             <div>
-                <input type="submit" value="Create" className="btn btn-success mb-3"/>
+                <input type="submit" value="Create"className="btn btn-success mb-3" />
             </div>
           </form>
       </div>
