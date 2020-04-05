@@ -67,7 +67,7 @@ _handleSubmit(event) {
           </Form.Group>
 
             <div>
-              <button className="btn btn-success mb-3" >Add image</button>
+              <button className="btn btn-dark mb-3" >Add image</button>
             </div>
             <div>
                 <input type="submit" value="Create"className="btn btn-success mb-3" />
