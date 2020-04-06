@@ -47,7 +47,7 @@ class LogIn extends Component {
     }
 
     // Need to update url and redirect function if it works
-    axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
+    axios.post('https://campaign-markt.herokuapp.com/login', {user}, {withCredentials: true})
       .then(response => {
         if (response.data.logged_in) {
           this.props.handleLogin(response.data)

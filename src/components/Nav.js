@@ -17,7 +17,7 @@ import {
 
 function Navigation(props) {
   const handleClick = () => {
-    axios.delete('http://localhost:3001/logout', {withCredentials: true})
+    axios.delete('https://campaign-markt.herokuapp.com/logout', {withCredentials: true})
     .then(response => {
       console.log(props.history);
 
