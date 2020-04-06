@@ -7,6 +7,7 @@ import Home from './Home';
 import Survey from './Survey';
 import Campaign from './Campaign';
 import LandingPage from './LandingPage';
+import CreateCompany from './CreateCompany';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios'
 
@@ -66,6 +67,7 @@ class App extends Component {
               <Route path="/survey" component={ Survey } />
               <Route path="/campaign" component={ Campaign } />
               <Route path="/landingpage" component={ LandingPage } />
+              <Route path="/createcompany" component={ CreateCompany } />
             </Switch>
           </Container>
         </div>
