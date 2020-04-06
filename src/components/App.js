@@ -65,6 +65,7 @@ class App extends Component {
               <Route path="/home" render={props => (<Home {...props} loggedInStatus={this.state.isLoggedIn} />)} />
               <Route path="/survey" component={ Survey } />
               <Route path="/campaign" component={ Campaign } />
+              <Route path="/landingpage" component={ LandingPage } />
             </Switch>
           </Container>
         </div>
