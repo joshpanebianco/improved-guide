@@ -19,7 +19,7 @@ function Navigation() {
     <Navbar bg="primary" variant="dark" expand="lg" className="mb-4">
     <Container>
       <Link to="home">
-      <Navbar.Brand to="/">Project Two</Navbar.Brand>
+      <Navbar.Brand to="/">Markt</Navbar.Brand>
       </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
