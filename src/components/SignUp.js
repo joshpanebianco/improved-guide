@@ -48,11 +48,10 @@ class SignUp extends Component {
       company_id: company_id
     }
 
-    // Need to update url and redirect function if it works
     axios.post('https://campaign-markt.herokuapp.com/users', {user}, {withCredentials: true})
       .then(response => {
         if (response.data.status === 'created') {
-          this.props.handleLogIn(response.data)
+          this.props.handleLogin(response.data)
           this.redirect()
         } else {
           this.setState({

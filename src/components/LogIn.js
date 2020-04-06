@@ -62,7 +62,6 @@ class LogIn extends Component {
   };
 
   redirect = () => {
-    console.log('success');
     this.props.history.push('/home')
   }
 
