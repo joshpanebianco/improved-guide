@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+const GALLERY_URL = 'https://localhost:3000/requests/galleries/2.json'
 
 class Survey extends Component {
   constructor() {
@@ -11,11 +14,44 @@ class Survey extends Component {
         {id: 1, image: 'https://cdn-a.william-reed.com/var/wrbm_gb_food_pharma/storage/images/1/9/0/3/2903091-5-eng-GB/Extending-equity-and-iconic-appeal-Coca-Cola-unites-brands-with-global-campaign_wrbm_medium.jpg', seen: false},
         {id: 2, image: 'https://s3-ap-southeast-1.amazonaws.com/images.marketing-interactive.com/wp-content/uploads/2017/06/no-sugar-e1497234889946.jpg', seen: false},
         {id: 3, image: 'https://www.communicus.com/wp-content/uploads/2017/03/coca-cola-ad-drink.jpg', seen: false}
-      ]
+      ],
+      gallery: {},
     }
 
     this.saveCount = this.saveCount.bind(this);
     this.updateSeen = this.updateSeen.bind(this);
+
+
+    // const request = require('request');
+    // request('https://localhost:3000/requests/galleries/2.json', function (error, response, body) {
+    //   console.error('error:', error); // Print the error if one occurred
+    //   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    //   console.log('body:', body); // Print the HTML for the Google homepage.
+    // });
+    //
+    // // At request level
+    // const https = require('https');
+    // const agent = new https.Agent({
+    //   rejectUnauthorized: false
+    // });
+    //
+    // axios.get('https://localhost:3000/requests/galleries/2.json', { httpsAgent: agent })
+
+    // const galleryList = axios.create({
+    //   withCredentials: true,
+    //   headers: {
+    //     'Accept': 'application/json',
+    //   }
+    // });
+
+    const fetchGallery = () => {
+      axios.get('http://localhost:3000/requests/galleries/2.json', {withCredentials: false}).then(results => {
+        this.setState({gallery: results.data.gallery});
+        console.log(results.data.gallery);
+      });
+    };
+
+    fetchGallery();
   }
 
 updateSeen(index) {
