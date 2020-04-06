@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Survey extends Component {
   constructor() {
@@ -102,7 +103,10 @@ const Score = (props) => {
   return(
     <div>
      <p>Your Score: {props.counter}</p>
-     <button type="submit">back to take another test</button>
+     <Link className="nav-style" to="/home">
+       <button type="submit">back to take another test</button>
+     </Link>
+
     </div>
   );
 }
