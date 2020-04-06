@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+  Container,
+  NavItem,
+  Card,
+  Row
+} from "react-bootstrap";
+
 class Survey extends Component {
   constructor() {
     super();
@@ -39,8 +52,6 @@ saveCount(content) {
   render() {
     return (
       <div>
-        <h2>Campaign's Name</h2>
-        <h3>User's Name</h3>
         <Gallery images={ this.state.allAds } increasePoint={ this.saveCount } updateSeen={this.updateSeen} />
         <Score counter={ this.state.countSeen}/>
       </div>
@@ -85,13 +96,21 @@ class Gallery extends Component {
       return this.state.index < this.props.images.length
       ? (
         <div>
-          <div>
-             <img src={this.state.add.image}/>
-          </div>
-          <div>
-              <button onClick={ this._onClickSeen } >Seen</button>
-              <button onClick={ this._onClickUnSeen }>Not seen</button>
-          </div>
+          <Row className="d-flex justify-content-center">
+            <Card className="shadow">
+              <Card.Header as="h5" className="text-white bg-dark">Company Name</Card.Header>
+              <Card.Body>
+                <Card.Title>Campaign Title</Card.Title>
+                <Card.Text>
+                  <img className="survey-img" src={this.state.add.image}/>
+                </Card.Text>
+                <div className="survey-btn">
+                  <Button variant="warning" size="lg" className="survey-cta" onClick={ this._onClickUnSeen }>Not Seen</Button>
+                  <Button variant="success" size="lg" className="survey-cta" onClick={ this._onClickSeen } >Seen</Button>
+                </div>
+              </Card.Body>
+              </Card>
+          </Row>
         </div>
       )
       : <img src='https://i.pinimg.com/474x/8e/44/6b/8e446b0c8ff905d51d96b8a9e01f296c.jpg'/>
@@ -102,11 +121,12 @@ class Gallery extends Component {
 const Score = (props) => {
   return(
     <div>
-     <p>Your Score: {props.counter}</p>
-     <Link className="nav-style" to="/home">
-       <button type="submit">back to take another test</button>
-     </Link>
+    <div>
 
+    </div>
+      <Row className="d-flex justify-content-center">
+        <Card body className="score-card my-4 text-center shadow"><h5 className="my-4">Your Score: {props.counter}</h5></Card>
+      </Row>
     </div>
   );
 }

@@ -37,3 +37,22 @@ code {
   display: block;
   margin: 0 auto;
 }
+
+.survey-img {
+  width: 399px;
+  height: 224px;
+}
+
+.survey-btn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.survey-cta {
+  width: 120px;
+  height: 48px;
+}
+
+.score-card {
+  width: 439px;
+}
