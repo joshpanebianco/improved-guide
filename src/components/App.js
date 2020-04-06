@@ -64,7 +64,7 @@ class App extends Component {
               <Route path="/signup" render={props => (<SignUp {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} />)} />
               <Route path="/forgetpass" component={ ForgetPass } />
               <Route path="/home" render={props => (<Home {...props} loggedInStatus={this.state.isLoggedIn} />)} />
-              <Route path="/survey" component={ Survey } />
+              <Route path="/survey/:galleryId" component={ Survey } />
               <Route path="/campaign" component={ Campaign } />
               <Route path="/landingpage" component={ LandingPage } />
               <Route path="/createcompany" component={ CreateCompany } />

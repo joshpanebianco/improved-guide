@@ -44,7 +44,7 @@ function Navigation(props) {
             <Link className="nav-style" to="/home">
               <li>HOME</li>
             </Link>
-            <Link className="nav-style" to="/survey">
+            <Link className="nav-style" to="/survey/2">
               <li>SURVEY</li>
             </Link>
             <Link className="nav-style" to="/campaign">
