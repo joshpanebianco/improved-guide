@@ -36,36 +36,36 @@ function Navigation(props) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto nav-links ">
-
-              <Link className="nav-style" to="/">
-                <li>SIGN IN</li>
-              </Link>
-              <Link className="nav-style" to="/signup">
-                <li>SIGN UP</li>
-              </Link>
-              <Link className="nav-style" to="/home">
-                <li>HOME</li>
-              </Link>
-              <Link className="nav-style" to="/survey">
-                <li>SURVEY</li>
-              </Link>
-              <Link className="nav-style" to="/campaign">
-                <li>CAMPAIGN</li>
-              </Link>
+            <Link className="nav-style" to="/">
+              <li>SIGN IN</li>
+            </Link>
+            <Link className="nav-style" to="/signup">
+              <li>SIGN UP</li>
+            </Link>
+            <Link className="nav-style" to="/home">
+              <li>HOME</li>
+            </Link>
+            <Link className="nav-style" to="/survey">
+              <li>SURVEY</li>
+            </Link>
+            <Link className="nav-style" to="/campaign">
+              <li>CAMPAIGN</li>
+            </Link>
           </Nav>
-
-            <Link to="/">
-              <Button className="mr-3" variant="dark">login</Button>
-            </Link>
-            <Link to="/signup">
-              <Button className="mr-3" variant="success" to="/signup">SignUp</Button>
-            </Link>
-            { 
-              props.loggedInStatus ? 
-              <Link to='/logout' onClick={handleClick}>Log Out</Link> : 
-              null
-            }
-
+          {
+            props.loggedInStatus
+            ? <Link to='/logout' onClick={handleClick}>Log Out</Link>
+            : (
+              <>
+                <Link to="/">
+                  <Button className="mr-3" variant="dark">login</Button>
+                </Link>
+                <Link to="/signup">
+                  <Button variant="success" to="/signup">SignUp</Button>
+                </Link>
+              </>
+            )
+          }
         </Navbar.Collapse>
       </Container>
     </Navbar>

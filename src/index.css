@@ -12,3 +12,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.hero-image {
+  background-image: url(https://images.unsplash.com/photo-1511268559489-34b624fbfcf5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+  background-size: cover;
+	background-position: center;
+  height: 500px;
+}
+
+.headline {
+  color: #fff;
+  text-align: center;
+	padding-top: 25%;
+	text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
+	             0px 8px 13px rgba(0, 0, 0, 0.1),
+							 0px 18px 23px rgba(0, 0, 0, 0.1);
+}
+
+.image-circle {
+  width: 200px;
+  height: 200px;
+  background-color: #b2bec3;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+}
