@@ -19,6 +19,7 @@ class LandingPage extends Component {
     return (
       <div>
 				<div className="hero-image">
+        
         </div>
 
 				<div className="quote-section my-5">
