@@ -49,12 +49,24 @@ class Survey extends Component {
     this.fetchGallery()
   }
 
+  updateDatabase(history) {
+    // can post to same server since index and create has same URL
+    axios.post('http://localhost:3000/histories/'+history.id, {user_id: history.user_id, ad_id: history.ad_id, has_been_seen: history.has_been_seen}).then((results) => {
+      console.log("SUBMITTED");
+      // const allSecrets = this.state.secrets;
+      // allSecrets.push(results.data);
+      // this.setState({secrets: allSecrets});
+    });
+  }
+
   // Update history 'has_seen' with user input
   updateSeen(index, boolean) {
     const allHistories = this.state.allHistories;
     allHistories[index - 1].has_been_seen = boolean;
     this.setState({allHistories: allHistories});
     console.log(allHistories);
+
+    this.updateDatabase(allHistories[index - 1]);
 
     // index -= 1;
     // const ads = this.state.allAds;
