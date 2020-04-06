@@ -27,7 +27,7 @@ class App extends Component {
 
   loginStatus = () => {
     // Change url after deployment
-    axios.get('http://localhost:3001/logged_in', {withCredentials: true})
+    axios.get('https://campaign-markt.herokuapp.com/logged_in', {withCredentials: true})
       .then(response => {
         if (response.data.logged_in) {
           this.handleLogin(response)
