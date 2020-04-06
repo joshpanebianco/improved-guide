@@ -177,7 +177,7 @@ _handleSubmit(event) {
 
          <Form.Group className="w-50">
             <Form.Label>Last Name</Form.Label>
-            <Form.Control name="firstname" type="text" placeholder="First name" value={ this.state.firstname } onChange={ this._handleChange } autoFocus required />
+            <Form.Control name="lastname" type="text" placeholder="Last name" value={ this.state.lastname } onChange={ this._handleChange } autoFocus required />
          </Form.Group>
 
           <Form.Group className="w-50">
