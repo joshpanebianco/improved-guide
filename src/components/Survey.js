@@ -20,23 +20,39 @@ class Survey extends Component {
     super(props);
     this.state = {
       isFetching: false,
+      imagesRemaining: true,
+      count: 0,
       countSeen: 0,
       countUnSeen: 0,
       allAds: [],
       allHistories: [],
       galleryId: props.match.params.galleryId,
       gallery: {},
+      historyInfo: [],
     }
 
     this.saveCount = this.saveCount.bind(this);
     this.updateSeen = this.updateSeen.bind(this);
+    this.updateCount = this.updateCount.bind(this);
+    this.fetchHistory = this.fetchHistory.bind(this);
 
   }
 
-  fetchGallery = () => {
-    const SERVER_URL = 'http://localhost:3000/requests/galleries/'+ this.state.galleryId +'.json';
+  fetchHistory = () => {
+    const SERVER_URL = 'http://localhost:3001/requests/histories/'+ this.state.galleryId +'.json';
     this.setState({...this.state, isFetching: true});
-    axios.get(SERVER_URL, {withCredentials: false}).then(results => {
+    axios.get(SERVER_URL, {withCredentials: true}).then(results => {
+      this.setState({historyInfo: results.data.history_info});
+      this.setState({...this.state, isFetching: false});
+      this.setState({...this.state, imagesRemaining: false});
+      console.log(results.data.history_info);
+    });
+  }
+
+  fetchGallery = () => {
+    const SERVER_URL = 'http://localhost:3001/requests/galleries/'+ this.state.galleryId +'.json';
+    this.setState({...this.state, isFetching: true});
+    axios.get(SERVER_URL, {withCredentials: true, headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(results => {
       this.setState({gallery: results.data.gallery});
       this.setState({allAds: results.data.ads});
       this.setState({allHistories: results.data.histories})
@@ -51,7 +67,7 @@ class Survey extends Component {
 
   updateDatabase(history) {
     // can post to same server since index and create has same URL
-    axios.post('http://localhost:3000/histories/'+history.id, {user_id: history.user_id, ad_id: history.ad_id, has_been_seen: history.has_been_seen}).then((results) => {
+    axios.post('http://localhost:3001/requests/histories/'+history.id+'.json', {id: history.id, user_id: history.user_id, ad_id: history.ad_id, has_been_seen: history.has_been_seen}, {withCredentials: true}).then((results) => {
       console.log("SUBMITTED");
       // const allSecrets = this.state.secrets;
       // allSecrets.push(results.data);
@@ -67,11 +83,18 @@ class Survey extends Component {
     console.log(allHistories);
 
     this.updateDatabase(allHistories[index - 1]);
+  }
 
-    // index -= 1;
-    // const ads = this.state.allAds;
-    // ads[index].seen = true;
-    // this.setState({allAds: ads });
+  updateCount(index) {
+    let count = this.state.count + 1;
+    this.setState({count: count});
+    console.log(count);
+    console.log(this.state.allAds.length);
+    if (count === this.state.allAds.length) {
+      this.setState({imagesRemaining: false});
+      console.log(this.state.imagesRemaining);
+      this.fetchHistory();
+    }
   }
 
   saveCount(content) {
@@ -86,13 +109,31 @@ class Survey extends Component {
 
   render() {
       const isFetching = this.state.isFetching;
+      const imagesRemaining = this.state.imagesRemaining;
       return (
             <div>
               {isFetching
                 ? <p>Loading</p>
                 : <div>
-                  <Gallery gallery={this.state.gallery} images={ this.state.allAds } increasePoint={ this.saveCount } updateSeen={this.updateSeen} />
-                  <Score counter={ this.state.countSeen}/>
+                  {imagesRemaining
+                    ? (
+                      <div>
+                        <Gallery gallery={this.state.gallery} images={ this.state.allAds } histories={this.state.allHistories} increasePoint={ this.saveCount } updateSeen={this.updateSeen} updateCount={this.updateCount}/>
+                        <Score counter={ this.state.countSeen}/>
+                      </div>
+                    )
+                    : (
+                      <div>
+                        {isFetching
+                        ? <p>Loading Your Responses</p>
+                        : <div>
+                          <Summary ads={this.state.allAds} histories={this.state.allHistories} historyInfo={this.state.historyInfo}/>
+                          <Link to="/home" >Check out more galleries</Link>
+                        </div>
+                      }
+                      </div>
+                    )
+                  }
                 </div>
               }
             </div>
@@ -121,6 +162,7 @@ class Gallery extends Component {
       this.setState({index: index, add: this.props.images[index]});
       this.props.updateSeen(index, true);
       this.props.increasePoint(true);
+      this.props.updateCount(index);
   };
 
   _onClickUnSeen(event) {
@@ -128,9 +170,8 @@ class Gallery extends Component {
     this.setState({index: index, add: this.props.images[index]});
     this.props.updateSeen(index, false);
     this.props.increasePoint(false);
+    this.props.updateCount(index);
   };
-
-
 
   render(props)
     {
@@ -154,9 +195,8 @@ class Gallery extends Component {
           </Row>
         </div>
       )
-      : <img src='https://i.pinimg.com/474x/8e/44/6b/8e446b0c8ff905d51d96b8a9e01f296c.jpg'/>
+      : <div></div>
     }
-
 };
 
 const Score = (props) => {
@@ -170,6 +210,48 @@ const Score = (props) => {
       </Row>
     </div>
   );
+}
+
+const Summary = (props) => {
+  return(
+    <div>
+      <h1>Your Responses</h1>
+      {props.ads.map ((ad, index) => {
+        const history = {
+          has_been_seen: props.histories[index].has_been_seen,
+          has_seen_total: props.historyInfo[index].has_seen_total,
+          has_notseen_total: props.historyInfo[index].has_notseen_total,
+          total: props.historyInfo[index].total,
+        }
+
+        return (<Result key={ad.id} ad={ad} history={history} />)
+      })}
+    </div>
+  );
+}
+
+const Result = (props) => {
+  return (
+    <div>
+      <Row className="d-flex justify-content-center">
+      <Card className="w-75 mb-4">
+        <Card.Body>
+          <Card.Title>{props.ad.name}</Card.Title>
+
+          <Card.Text>
+            <img className="survey-img" src={props.ad.image}/>
+          </Card.Text>
+
+          <Card.Text>Your Response: {props.history ? 'Seen' : 'Not Seen'}</Card.Text>
+          <Card.Text>Population Stats</Card.Text>
+          <Card.Text>Seen: {props.history.has_seen_total}</Card.Text>
+          <Card.Text>Not Seen: {props.history.has_notseen_total}</Card.Text>
+          <Card.Text>Total: {props.history.total}</Card.Text>
+        </Card.Body>
+       </Card>
+     </Row>
+    </div>
+  )
 }
 
 
