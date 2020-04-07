@@ -35,11 +35,12 @@ class Survey extends Component {
     this.updateSeen = this.updateSeen.bind(this);
     this.updateCount = this.updateCount.bind(this);
     this.fetchHistory = this.fetchHistory.bind(this);
+    this.updateDatabaseTwo = this.updateDatabaseTwo.bind(this);
 
   }
 
   fetchHistory = () => {
-    const SERVER_URL = 'http://localhost:3001/requests/histories/'+ this.state.galleryId +'.json';
+    const SERVER_URL = 'https://campaign-markt.herokuapp.com/requests/histories/'+ this.state.galleryId +'.json';
     this.setState({...this.state, isFetching: true});
     axios.get(SERVER_URL, {withCredentials: true}).then(results => {
       this.setState({historyInfo: results.data.history_info});
@@ -50,7 +51,7 @@ class Survey extends Component {
   }
 
   fetchGallery = () => {
-    const SERVER_URL = 'http://localhost:3001/requests/galleries/'+ this.state.galleryId +'.json';
+    const SERVER_URL = 'https://campaign-markt.herokuapp.com/requests/galleries/'+ this.state.galleryId +'.json';
     this.setState({...this.state, isFetching: true});
     axios.get(SERVER_URL, {withCredentials: true, headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(results => {
       this.setState({gallery: results.data.gallery});
@@ -67,12 +68,26 @@ class Survey extends Component {
 
   updateDatabase(history) {
     // can post to same server since index and create has same URL
-    axios.post('http://localhost:3001/requests/histories/'+history.id+'.json', {id: history.id, user_id: history.user_id, ad_id: history.ad_id, has_been_seen: history.has_been_seen}, {withCredentials: true}).then((results) => {
+    axios.post('https://campaign-markt.herokuapp.com/requests/histories/'+history.id+'.json', {id: history.id, user_id: history.user_id, ad_id: history.ad_id, has_been_seen: history.has_been_seen}, {withCredentials: true}).then((results) => {
       console.log("SUBMITTED");
       // const allSecrets = this.state.secrets;
       // allSecrets.push(results.data);
       // this.setState({secrets: allSecrets});
     });
+  }
+
+  updateDatabaseTwo(allHistories) {
+    this.setState({...this.state, isFetching: true});
+    allHistories.forEach((history, index) => {
+      console.log(index);
+      axios.post('https://campaign-markt.herokuapp.com/requests/histories/'+history.id+'.json', {id: history.id, user_id: history.user_id, ad_id: history.ad_id, has_been_seen: history.has_been_seen}, {withCredentials: true}).then((results) => {
+        console.log("SUBMITTED");
+        // const allSecrets = this.state.secrets;
+        // allSecrets.push(results.data);
+        // this.setState({secrets: allSecrets});
+      });
+    });
+    console.log("HEY");
   }
 
   // Update history 'has_seen' with user input
@@ -82,7 +97,7 @@ class Survey extends Component {
     this.setState({allHistories: allHistories});
     console.log(allHistories);
 
-    this.updateDatabase(allHistories[index - 1]);
+    // this.updateDatabase(allHistories[index - 1]);
   }
 
   updateCount(index) {
@@ -93,6 +108,7 @@ class Survey extends Component {
     if (count === this.state.allAds.length) {
       this.setState({imagesRemaining: false});
       console.log(this.state.imagesRemaining);
+      this.updateDatabaseTwo(this.state.allHistories);
       this.fetchHistory();
     }
   }
