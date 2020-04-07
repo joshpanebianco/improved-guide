@@ -61,7 +61,7 @@ class SignUp extends Component {
             error: response.data.errors
           })
         }
-      })
+      } )
       .catch(error => console.log('api errors:', error))
   }
 
