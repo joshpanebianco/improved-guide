@@ -51,7 +51,7 @@ class GalleryStats extends Component {
       <div>
         <h1>Statistics</h1>
         {isFetching
-          ? <p>Loading</p>
+          ? <p>Loading Statistics</p>
           : (
             <div>
               {
@@ -59,7 +59,7 @@ class GalleryStats extends Component {
                   const history = this.state.historyInfo[index];
                   return(
                     <div>
-                      <AdResult ad={ad} history={history} />
+                      <AdResult key={ad.id} ad={ad} history={history} />
                     </div>
                   )
                 })

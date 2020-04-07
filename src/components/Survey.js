@@ -109,7 +109,7 @@ class Survey extends Component {
       return (
             <div>
               {isFetching
-                ? <p>Loading</p>
+                ? <p>Loading Survey</p>
                 : <div>
                   {imagesRemaining
                     ? (
