@@ -35,7 +35,7 @@ class Survey extends Component {
     this.updateSeen = this.updateSeen.bind(this);
     this.updateCount = this.updateCount.bind(this);
     this.fetchHistory = this.fetchHistory.bind(this);
-    this.updateDatabaseTwo = this.updateDatabaseTwo.bind(this);
+    this.updateDatabase = this.updateDatabase.bind(this);
 
   }
 
@@ -66,28 +66,14 @@ class Survey extends Component {
     this.fetchGallery()
   }
 
-  updateDatabase(history) {
-    // can post to same server since index and create has same URL
-    axios.post('https://campaign-markt.herokuapp.com/requests/histories/'+history.id+'.json', {id: history.id, user_id: history.user_id, ad_id: history.ad_id, has_been_seen: history.has_been_seen}, {withCredentials: true}).then((results) => {
-      console.log("SUBMITTED");
-      // const allSecrets = this.state.secrets;
-      // allSecrets.push(results.data);
-      // this.setState({secrets: allSecrets});
-    });
-  }
-
-  updateDatabaseTwo(allHistories) {
+  updateDatabase = async (allHistories) => {
     this.setState({...this.state, isFetching: true});
-    allHistories.forEach((history, index) => {
-      console.log(index);
+    await allHistories.forEach((history, index) => {
       axios.post('https://campaign-markt.herokuapp.com/requests/histories/'+history.id+'.json', {id: history.id, user_id: history.user_id, ad_id: history.ad_id, has_been_seen: history.has_been_seen}, {withCredentials: true}).then((results) => {
         console.log("SUBMITTED");
-        // const allSecrets = this.state.secrets;
-        // allSecrets.push(results.data);
-        // this.setState({secrets: allSecrets});
       });
     });
-    console.log("HEY");
+
   }
 
   // Update history 'has_seen' with user input
@@ -95,20 +81,14 @@ class Survey extends Component {
     const allHistories = this.state.allHistories;
     allHistories[index - 1].has_been_seen = boolean;
     this.setState({allHistories: allHistories});
-    console.log(allHistories);
-
-    // this.updateDatabase(allHistories[index - 1]);
   }
 
   updateCount(index) {
     let count = this.state.count + 1;
     this.setState({count: count});
-    console.log(count);
-    console.log(this.state.allAds.length);
     if (count === this.state.allAds.length) {
       this.setState({imagesRemaining: false});
-      console.log(this.state.imagesRemaining);
-      this.updateDatabaseTwo(this.state.allHistories);
+      this.updateDatabase(this.state.allHistories);
       this.fetchHistory();
     }
   }
