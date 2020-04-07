@@ -238,7 +238,7 @@ const Result = (props) => {
             <img className="survey-img" src={props.ad.image}/>
           </Card.Text>
 
-          <Card.Text>Your Response: {props.history ? 'Seen' : 'Not Seen'}</Card.Text>
+          <Card.Text>Your Response: {props.history.has_been_seen ? 'Seen' : 'Not Seen'}</Card.Text>
           <Card.Text>Population Stats</Card.Text>
           <Card.Text>Seen: {props.history.has_seen_total}</Card.Text>
           <Card.Text>Not Seen: {props.history.has_notseen_total}</Card.Text>

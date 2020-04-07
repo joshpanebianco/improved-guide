@@ -63,7 +63,10 @@ class Gallery extends Component {
         <Card.Body>
           <Card.Title>{this.props.gallery.type}</Card.Title>
           <Link to={`/survey/${this.props.gallery.id}`}>
-            <Button variant="primary">start</Button>
+            <Button variant="primary">Start Survey</Button>
+          </Link>
+          <Link to={`/stats/${this.props.gallery.id}`}>
+            <Button variant="primary">See Responses</Button>
           </Link>
         </Card.Body>
        </Card>
