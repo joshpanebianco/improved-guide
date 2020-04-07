@@ -24,8 +24,8 @@ class Home extends Component {
     }
   }
 
-  fetchAds = () => {
-    const SERVER_URL = 'https://campaign-markt.herokuapp.com/requests/galleries.json';
+  fetchGalleries = () => {
+    const SERVER_URL = 'https://campaign-markt.herokuapp.com/requests/galleries';
     this.setState({...this.state, isFetching: true});
     axios.get(SERVER_URL, {withCredentials: true}).then(results => {
       this.setState({galleries: results.data.galleries});
@@ -35,7 +35,7 @@ class Home extends Component {
 
   // Fetch ads on page load
   componentDidMount() {
-    this.fetchAds()
+    this.fetchGalleries()
   }
 
 

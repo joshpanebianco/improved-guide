@@ -39,6 +39,11 @@ class CreateCompany extends Component {
         description: description,
         image: image
       }
+
+      axios.post('https://campaign-markt.herokuapp.com/companies', {company}, {withCredentials: true})
+      .then(response => {
+        console.log(response.data)
+      })
     }
 
 

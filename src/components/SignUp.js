@@ -26,7 +26,6 @@ class SignUp extends Component {
         company_id: '',
         errors: ''
     };
-    // this._saveInfo = this._saveInfo.bind(this);
   }
 
   handleChange = (event) => {
@@ -58,7 +57,7 @@ class SignUp extends Component {
             error: response.data.errors
           })
         }
-      })
+      } )
       .catch(error => console.log('api errors:', error))
   }
 
@@ -77,8 +76,6 @@ class SignUp extends Component {
       </div>
     )
   }
-
-
 
   render() {
     return(
@@ -102,7 +99,7 @@ class SignUp extends Component {
 
           <Form.Group className="w-50">
             <Form.Label>Confirm Password</Form.Label>
-            <Form.Control name="password_confirmation" type="text" placeholder="Confirm password" value={ this.state.password_confirmation } onChange={ this.handleChange } required />
+            <Form.Control name="password_confirmation" type="password" placeholder="Confirm password" value={ this.state.password_confirmation } onChange={ this.handleChange } required />
           </Form.Group>
 
           <Form.Group className="w-50">

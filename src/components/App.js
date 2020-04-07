@@ -5,7 +5,7 @@ import ForgetPass from './ForgetPass';
 import SignUp from './SignUp';
 import Home from './Home';
 import Survey from './Survey';
-import Campaign from './Campaign';
+import Gallery from './Gallery';
 import GalleryStats from './GalleryStats';
 import CreateAd from './CreateAd';
 import LandingPage from './LandingPage';
@@ -67,8 +67,8 @@ class App extends Component {
               <Route path="/forgetpass" component={ ForgetPass } />
               <Route path="/home" render={props => (<Home {...props} loggedInStatus={this.state.isLoggedIn} />)} />
               <Route path="/survey/:galleryId" component={ Survey } />
+              <Route path="/Gallery" component={ Gallery } />
               <Route path="/stats/:galleryId" component={ GalleryStats } />
-              <Route path="/campaign" component={ Campaign } />
               <Route path="/ad" component={ CreateAd } />
               <Route path="/landingpage" component={ LandingPage } />
               <Route path="/createcompany" component={ CreateCompany } />
