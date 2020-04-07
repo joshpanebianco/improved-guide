@@ -6,6 +6,7 @@ import SignUp from './SignUp';
 import Home from './Home';
 import Survey from './Survey';
 import Campaign from './Campaign';
+import CreateAd from './CreateAd';
 import LandingPage from './LandingPage';
 import CreateCompany from './CreateCompany';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
@@ -66,6 +67,7 @@ class App extends Component {
               <Route path="/home" render={props => (<Home {...props} loggedInStatus={this.state.isLoggedIn} />)} />
               <Route path="/survey/:galleryId" component={ Survey } />
               <Route path="/campaign" component={ Campaign } />
+              <Route path="/ad" component={ CreateAd } />
               <Route path="/landingpage" component={ LandingPage } />
               <Route path="/createcompany" component={ CreateCompany } />
             </Switch>
