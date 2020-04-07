@@ -29,13 +29,14 @@ class GalleryStats extends Component {
 
   fetchData = () => {
     this.setState({isFetching: true});
-    const SERVER_URL = 'http://localhost:3001/requests/histories/'+this.state.galleryId+'.json';
+    const SERVER_URL = 'https://campaign-markt.herokuapp.com/requests/histories/'+this.state.galleryId+'.json';
     axios.get(SERVER_URL, {withCredentials: true}).then((results) => {
       this.setState({
         gallery: results.data.gallery,
         allAds: results.data.ads,
         historyInfo: results.data.history_info,
       });
+      console.log(results.data);
       this.setState({isFetching: false});
     });
   }
