@@ -25,9 +25,9 @@ class Home extends Component {
   }
 
   fetchAds = () => {
-    const SERVER_URL = 'http://localhost:3001/requests/galleries.json';
+    const SERVER_URL = 'https://campaign-markt.herokuapp.com/requests/galleries.json';
     this.setState({...this.state, isFetching: true});
-    axios.get(SERVER_URL, {withCredentials: false}).then(results => {
+    axios.get(SERVER_URL, {withCredentials: true}).then(results => {
       this.setState({galleries: results.data.galleries});
       this.setState({...this.state, isFetching: false});
     })

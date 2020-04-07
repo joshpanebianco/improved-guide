@@ -35,11 +35,12 @@ class Survey extends Component {
     this.updateSeen = this.updateSeen.bind(this);
     this.updateCount = this.updateCount.bind(this);
     this.fetchHistory = this.fetchHistory.bind(this);
+    this.updateDatabase = this.updateDatabase.bind(this);
 
   }
 
   fetchHistory = () => {
-    const SERVER_URL = 'http://localhost:3001/requests/histories/'+ this.state.galleryId +'.json';
+    const SERVER_URL = 'https://campaign-markt.herokuapp.com/requests/histories/'+ this.state.galleryId +'.json';
     this.setState({...this.state, isFetching: true});
     axios.get(SERVER_URL, {withCredentials: true}).then(results => {
       this.setState({historyInfo: results.data.history_info});
@@ -50,7 +51,7 @@ class Survey extends Component {
   }
 
   fetchGallery = () => {
-    const SERVER_URL = 'http://localhost:3001/requests/galleries/'+ this.state.galleryId +'.json';
+    const SERVER_URL = 'https://campaign-markt.herokuapp.com/requests/galleries/'+ this.state.galleryId +'.json';
     this.setState({...this.state, isFetching: true});
     axios.get(SERVER_URL, {withCredentials: true, headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(results => {
       this.setState({gallery: results.data.gallery});
@@ -65,14 +66,14 @@ class Survey extends Component {
     this.fetchGallery()
   }
 
-  updateDatabase(history) {
-    // can post to same server since index and create has same URL
-    axios.post('http://localhost:3001/requests/histories/'+history.id+'.json', {id: history.id, user_id: history.user_id, ad_id: history.ad_id, has_been_seen: history.has_been_seen}, {withCredentials: true}).then((results) => {
-      console.log("SUBMITTED");
-      // const allSecrets = this.state.secrets;
-      // allSecrets.push(results.data);
-      // this.setState({secrets: allSecrets});
+  updateDatabase = async (allHistories) => {
+    this.setState({...this.state, isFetching: true});
+    await allHistories.forEach((history, index) => {
+      axios.post('https://campaign-markt.herokuapp.com/requests/histories/'+history.id+'.json', {id: history.id, user_id: history.user_id, ad_id: history.ad_id, has_been_seen: history.has_been_seen}, {withCredentials: true}).then((results) => {
+        console.log("SUBMITTED");
+      });
     });
+
   }
 
   // Update history 'has_seen' with user input
@@ -80,19 +81,14 @@ class Survey extends Component {
     const allHistories = this.state.allHistories;
     allHistories[index - 1].has_been_seen = boolean;
     this.setState({allHistories: allHistories});
-    console.log(allHistories);
-
-    this.updateDatabase(allHistories[index - 1]);
   }
 
   updateCount(index) {
     let count = this.state.count + 1;
     this.setState({count: count});
-    console.log(count);
-    console.log(this.state.allAds.length);
     if (count === this.state.allAds.length) {
       this.setState({imagesRemaining: false});
-      console.log(this.state.imagesRemaining);
+      this.updateDatabase(this.state.allHistories);
       this.fetchHistory();
     }
   }
