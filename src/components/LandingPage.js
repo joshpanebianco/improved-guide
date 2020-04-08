@@ -33,19 +33,19 @@ class LandingPage extends Component {
 				<div className="benefits-section">
            <Row>
 	           <Col className="col-md-4 col-sm-12 text-center justify-content-center">
-						    <img src="http://www.fillmurray.com/200/200" className="image-circle mb-3" />
-						    <h5>Benefit One</h5>
-								<p>More details about the benefit</p>
+						    <img src="https://images.unsplash.com/photo-1493119508027-2b584f234d6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" className="image-circle mb-3" />
+						    <h5>Measure Your Advertising Results</h5>
+								<p>Learn which campaign reached your target customers</p>
 						 </Col>
 						 <Col className="col-md-4 col-sm-12 text-center">
-                <img src="http://www.fillmurray.com/201/200" className="image-circle mb-3" />
-						    <h5>Benefit Two</h5>
-								<p>More details about the benefit</p>
+                <img src="https://images.unsplash.com/photo-1567443026248-f4472c8e5145?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" className="image-circle mb-3" />
+						    <h5>Compare Marketing Campaigns</h5>
+								<p>Discover which campaigns had the greatest impact</p>
 						 </Col>
 						 <Col className="col-md-4 col-sm-12 text-center">
-                <img src="http://www.fillmurray.com/202/200" className="image-circle mb-3" />
-						    <h5>Benefit Three</h5>
-								<p>More details about the benefit</p>
+                <img src="https://images.unsplash.com/photo-1536104968055-4d61aa56f46a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" className="image-circle mb-3" />
+						    <h5>Make Data-Driven Decisions</h5>
+								<p>Increase return on the money you spend on advertising</p>
 						 </Col>
 					 </Row>
 				</div>
