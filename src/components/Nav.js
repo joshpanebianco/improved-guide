@@ -18,7 +18,7 @@ class Navigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+
     }
   }
 
@@ -59,6 +59,8 @@ class Navigation extends Component {
             this.props.loggedInStatus
             ? (
                 <>
+
+
                 <NavDropdown title={this.props.user.name} id="nav-dropdown" className="nav-links">
                   <NavDropdown.Item as={Link} to="/ads/new">
                     {/* <Nav.Link as={Link} to="/ads/new"> */}
@@ -75,13 +77,8 @@ class Navigation extends Component {
                         CREATE GALLERY
                       {/* </Nav.Link> */}
                     </NavDropdown.Item>
-<<<<<<< HEAD
                     <NavDropdown.Item>
                       <Nav.Link as={Link} to={`/gallery/${props.user.id}`}>
-=======
-                    <NavDropdown.Item as={Link} to="/ad/new">
-                      {/* <Nav.Link as={Link} to="/ad/new"> */}
->>>>>>> 7098b8e94f7a22915f02ac0fd19e9763fc8e200b
                         MY GALLERIES
                       {/* </Nav.Link> */}
                     </NavDropdown.Item>
