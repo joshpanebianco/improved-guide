@@ -45,13 +45,13 @@ function Navigation(props) {
                 <>
                 <NavDropdown title={props.user.name} id="nav-dropdown" className="nav-links">
                   <NavDropdown.Item>
-                    <Nav.Link as={Link} to="/ad/new">
+                    <Nav.Link as={Link} to="/ads/new">
                       CREATE AD
                     </Nav.Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item>
-                    <Nav.Link as={Link} to="/ad/new">
-                      MY ADS
+                    <Nav.Link as={Link} to={`/ads/${props.user.company_id}`}>
+                      COMPANY ADS
                     </Nav.Link>
                   </NavDropdown.Item>
                     <NavDropdown.Item>

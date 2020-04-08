@@ -8,6 +8,7 @@ import Survey from './Survey';
 import Gallery from './Gallery';
 import GalleryStats from './GalleryStats';
 import CreateAd from './CreateAd';
+import CompanyAds from './CompanyAds';
 import LandingPage from './LandingPage';
 import CreateCompany from './CreateCompany';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
@@ -69,7 +70,8 @@ class App extends Component {
               <Route path="/survey/:galleryId" component={ Survey } />
               <Route path="/gallery/new" component={ Gallery } />
               <Route path="/stats/:galleryId" component={ GalleryStats } />
-              <Route path="/ad/new" render={props => (<CreateAd {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
+              <Route path="/ads/new" render={props => (<CreateAd {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
+              <Route path="/ads/:companyId" render={props => (<CompanyAds {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
               <Route path="/landingpage" component={ LandingPage } />
               <Route path="/createcompany" component={ CreateCompany } />
             </Switch>
