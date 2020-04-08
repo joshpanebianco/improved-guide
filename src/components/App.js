@@ -8,6 +8,7 @@ import Survey from './Survey';
 import Gallery from './Gallery';
 import GalleryStats from './GalleryStats';
 import CreateAd from './CreateAd';
+import CompanyAds from './CompanyAds';
 import LandingPage from './LandingPage';
 import Footer from './Footer';
 import CreateCompany from './CreateCompany';
@@ -60,17 +61,18 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route render={props => (<Nav {...props} loggedInStatus={this.state.isLoggedIn} handleLogout={this.handleLogout} />)} />
+          <Route render={props => (<Nav {...props} loggedInStatus={this.state.isLoggedIn} handleLogout={this.handleLogout} user={this.state.user}/>)} />
           <Container className="main-container">
             <Switch>
               <Route exact path="/" render={props => (<LogIn {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} />)} />
               <Route path="/signup" render={props => (<SignUp {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} />)} />
               <Route path="/forgetpass" component={ ForgetPass } />
-              <Route path="/home" render={props => (<Home {...props} loggedInStatus={this.state.isLoggedIn} />)} />
+              <Route path="/explore" render={props => (<Home {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
               <Route path="/survey/:galleryId" component={ Survey } />
-              <Route path="/Gallery" component={ Gallery } />
+              <Route path="/gallery/new" component={ Gallery } />
               <Route path="/stats/:galleryId" component={ GalleryStats } />
-              <Route path="/ad" component={ CreateAd } />
+              <Route path="/ads/new" render={props => (<CreateAd {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
+              <Route path="/ads/:companyId" render={props => (<CompanyAds {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
               <Route path="/landingpage" component={ LandingPage } />
 
               <Route path="/createcompany" component={ CreateCompany } />
