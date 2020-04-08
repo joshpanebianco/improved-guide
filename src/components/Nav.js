@@ -30,7 +30,7 @@ function Navigation(props) {
     <Navbar bg="primary" variant="dark" expand="lg" className="mb-4">
       <Container>
         <Link to="landingpage">
-          <Navbar.Brand to="/">Project Two</Navbar.Brand>
+          <Navbar.Brand to="/" className="logo">Makrt</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
