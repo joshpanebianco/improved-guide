@@ -60,7 +60,7 @@ function Navigation(props) {
                       </Nav.Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item>
-                      <Nav.Link as={Link} to="/ad/new">
+                      <Nav.Link as={Link} to={`/gallery/${props.user.id}`}>
                         MY GALLERIES
                       </Nav.Link>
                     </NavDropdown.Item>

@@ -6,6 +6,7 @@ import SignUp from './SignUp';
 import Home from './Home';
 import Survey from './Survey';
 import Gallery from './Gallery';
+import UserGalleries from './UserGalleries';
 import GalleryStats from './GalleryStats';
 import CreateAd from './CreateAd';
 import CompanyAds from './CompanyAds';
@@ -69,8 +70,9 @@ class App extends Component {
               <Route path="/forgetpass" component={ ForgetPass } />
               <Route path="/explore" render={props => (<Home {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
               <Route path="/survey/:galleryId" component={ Survey } />
-          
+
               <Route path="/gallery/new" render={props => (< Gallery {...props} user={ this.state.user} />)} />
+              <Route path= "/gallery/:userId" render={props => (<UserGalleries {...props} user={this.state.user} />)} />
               <Route path="/stats/:galleryId" component={ GalleryStats } />
               <Route path="/ads/new" render={props => (<CreateAd {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
               <Route path="/ads/:companyId" render={props => (<CompanyAds {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
