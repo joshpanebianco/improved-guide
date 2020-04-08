@@ -44,11 +44,11 @@ function Navigation(props) {
             <Link className="nav-style" to="/home">
               <li>HOME</li>
             </Link>
-            <Link className="nav-style" to="/survey/2">
-              <li>SURVEY</li>
+            <Link className="nav-style" to="/gallery">
+              <li>GALLERY</li>
             </Link>
-            <Link className="nav-style" to="/campaign">
-              <li>CAMPAIGN</li>
+            <Link className="nav-style" to="/ad">
+              <li>CreateAd</li>
             </Link>
             <Link className="nav-style" to="/createcompany">
               <li>CreateCompany</li>
