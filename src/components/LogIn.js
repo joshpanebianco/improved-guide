@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './config/global'
 
 import {
   Navbar,
@@ -62,7 +63,7 @@ class LogIn extends Component {
   };
 
   redirect = () => {
-    this.props.history.push('/home')
+    this.props.history.push('/explore')
   }
 
   handleErrors = () => {

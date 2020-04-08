@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {globalSetting} from './config/global.js';
+
 import {
   Navbar,
   Nav,
@@ -39,6 +41,11 @@ class CreateCompany extends Component {
         description: description,
         image: image
       }
+
+      axios.post(globalSetting.SERVER_URL + 'companies', {company}, {withCredentials: true})
+      .then(response => {
+        console.log(response.data)
+      })
     }
 
 

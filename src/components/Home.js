@@ -20,15 +20,19 @@ class Home extends Component {
     this.state = {
       isFetching: false,
       galleries: [],
-
+      companies: [],
     }
   }
 
   fetchGalleries = () => {
     const SERVER_URL = 'https://campaign-markt.herokuapp.com/requests/galleries';
+    // const SERVER_URL = 'http://localhost:3001/requests/galleries.json';
     this.setState({...this.state, isFetching: true});
     axios.get(SERVER_URL, {withCredentials: true}).then(results => {
-      this.setState({galleries: results.data.galleries});
+      this.setState({
+        galleries: results.data.galleries,
+        companies: results.data.companies,
+      });
       this.setState({...this.state, isFetching: false});
     })
   }
@@ -40,12 +44,18 @@ class Home extends Component {
 
 
   render() {
+    const isFetching = this.state.isFetching;
     return (
       <div>
-      {this.state.galleries.map ((gallery) => {
-        return (<Gallery gallery={gallery} key={gallery.id} />)
-      })}
-
+        {isFetching
+          ? <p>Loading Galleries</p>
+          : <div>
+            {this.state.galleries.map ((gallery, index) => {
+                    const company = this.state.companies[index]
+                    return (<Gallery key={gallery.id} gallery={gallery} company={company} />)
+                  })}
+          </div>
+        }
       </div>
     );
   }
@@ -61,9 +71,18 @@ class Gallery extends Component {
 
         <Card.Header as="h5" className="text-white bg-dark">{this.props.gallery.name}</Card.Header>
         <Card.Body>
-          <Card.Title>{this.props.gallery.type}</Card.Title>
+          <Card.Title>{this.props.gallery.category}</Card.Title>
+          {this.props.company !== null
+            ?   <Card.Text>
+                  <img src={this.props.company.image} alt="Company logo" />
+                </Card.Text>
+            : null
+            }
           <Link to={`/survey/${this.props.gallery.id}`}>
-            <Button variant="primary">start</Button>
+            <Button variant="primary">Start Survey</Button>
+          </Link>
+          <Link to={`/stats/${this.props.gallery.id}`}>
+            <Button variant="primary">See Responses</Button>
           </Link>
         </Card.Body>
        </Card>

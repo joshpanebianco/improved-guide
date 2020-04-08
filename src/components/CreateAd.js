@@ -14,32 +14,37 @@ import {
 
 
 class CreateAd extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+        isFetching: false,
         adInfo: [],
         name: '',
         ad_type: 'Social Media',
         image: '',
-        company_id: 0,
-        companies: [],
+        user_id: props.user.id,
+        company_id: props.user.company_id,
+        company: {},
     };
   }
 
-  fetchCompanies = () => {
-    const SERVER_URL = 'http://localhost:3001/requests/companies.json';
+  fetchCompany = () => {
+    this.setState({isFetching: true});
+    // const SERVER_URL = 'http://localhost:3001/requests/companies/'+this.state.company_id+'.json';
+    const SERVER_URL = 'https://campaign-markt.herokuapp.com/requests/companies/'+this.state.company_id+'.json';
     axios.get(SERVER_URL, {withCredentials: true}).then((results) => {
-      this.setState({companies: results.data.companies, company_id: results.data.companies[0].id});
-
+      this.setState({company: results.data.company});
+      this.setState({isFetching: false});
     });
   }
 
   componentDidMount() {
-    this.fetchCompanies();
+    this.fetchCompany();
   }
 
   postAd = (ad) => {
-    const SERVER_URL = 'http://localhost:3001/ads.json';
+    // const SERVER_URL = 'http://localhost:3001/ads';
+    const SERVER_URL = 'https://campaign-markt.herokuapp.com/ads';
     axios.post(SERVER_URL, {ad}, {withCredentials: true}).then((results) => {
       console.log("SUBMITTED");
       this.redirect();
@@ -47,7 +52,7 @@ class CreateAd extends Component {
   }
 
   redirect = () => {
-    this.props.history.push('/home')
+    this.props.history.push(`/ads/${this.state.company_id}`)
   }
 
     handleChange = (event) => {
@@ -59,12 +64,13 @@ class CreateAd extends Component {
 
     handleSubmit = (event) => {
       event.preventDefault();
-      const {name, ad_type, company_id, image} = this.state
+      const {name, ad_type, company_id, user_id, image} = this.state
 
       let ad = {
         name: name,
         ad_type: ad_type,
         company_id: company_id,
+        user_id: user_id,
         image: image,
       }
       this.postAd(ad);
@@ -73,43 +79,48 @@ class CreateAd extends Component {
 
 
   render() {
+    const isFetching = this.state.isFetching;
     return(
       <div>
-        <h3>Create A New Ad</h3>
-        <form onSubmit={ this.handleSubmit }>
-         <Form.Group className="w-50">
-            <Form.Label>Ad Name</Form.Label>
-            <Form.Control name="name" type="text" placeholder="Ad name" value={ this.state.name } onChange={ this.handleChange } autoFocus required />
-         </Form.Group>
+        {isFetching
+        ? <p>Loading Create Ad</p>
+        : <div>
+          <h3>Create A New Ad</h3>
+          <form onSubmit={ this.handleSubmit }>
+           <Form.Group className="w-50">
+              <Form.Label>Ad Name</Form.Label>
+              <Form.Control name="name" type="text" placeholder="Ad name" value={ this.state.name } onChange={ this.handleChange } autoFocus required />
+           </Form.Group>
 
-          <Form.Group className="w-50">
-            <Form.Label>Ad Type</Form.Label>
-            <Form.Control as="select" name="ad_type" onChange={this.handleChange}>
-              <option>Social Media</option>
-              <option>TV</option>
-              <option>Billboard</option>
-              <option>Newspaper/Magazine</option>
-            </Form.Control>
-          </Form.Group>
+            <Form.Group className="w-50">
+              <Form.Label>Ad Type</Form.Label>
+              <Form.Control as="select" name="ad_type" onChange={this.handleChange}>
+                <option>Social Media</option>
+                <option>TV</option>
+                <option>Billboard</option>
+                <option>Newspaper/Magazine</option>
+              </Form.Control>
+            </Form.Group>
 
-          <Form.Group className="w-50">
-            <Form.Label>Company</Form.Label>
-            <Form.Control as="select" name="ad_type" onChange={this.handleChange}>
-              {this.state.companies.map((company) => <option value={company.id}>{company.name}</option>)}
-            </Form.Control>
-          </Form.Group>
+            <Form.Group className="w-50">
+              <Form.Label>Company</Form.Label>
+              <Form.Control plaintext readOnly defaultValue={this.state.company.name}></Form.Control>
+            </Form.Group>
 
-          <Form.Group className="w-50">
-            <Form.Label>Image</Form.Label>
-            <Form.Control name="image" type="text" placeholder="URL" value={ this.state.image } onChange={ this.handleChange } />
-          </Form.Group>
+            <Form.Group className="w-50">
+              <Form.Label>Image</Form.Label>
+              <Form.Control name="image" type="text" placeholder="URL" value={ this.state.image } onChange={ this.handleChange } />
+            </Form.Group>
 
-          <div>
-              <input type="submit" value="Submit" className="btn btn-success mb-3"/>
-          </div>
-        </form>
+            <div>
+                <input type="submit" value="Submit" className="btn btn-success mb-3"/>
+            </div>
+          </form>
 
+        </div>
+      }
       </div>
+
     );
   }
 }

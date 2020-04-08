@@ -109,7 +109,7 @@ class Survey extends Component {
       return (
             <div>
               {isFetching
-                ? <p>Loading</p>
+                ? <p>Loading Survey</p>
                 : <div>
                   {imagesRemaining
                     ? (
@@ -124,7 +124,7 @@ class Survey extends Component {
                         ? <p>Loading Your Responses</p>
                         : <div>
                           <Summary ads={this.state.allAds} histories={this.state.allHistories} historyInfo={this.state.historyInfo}/>
-                          <Link to="/home" >Check out more galleries</Link>
+                          <Link to="/explore" >Check out more galleries</Link>
                         </div>
                       }
                       </div>
@@ -175,7 +175,7 @@ class Gallery extends Component {
       ? (
         <div>
           <Row className="d-flex justify-content-center">
-            <Card className="shadow">
+            <Card className="survey-card shadow">
               <Card.Header as="h5" className="text-white bg-dark">{this.state.gallery.name}</Card.Header>
               <Card.Body>
                 <Card.Title>{this.state.gallery.name}</Card.Title>
@@ -238,7 +238,7 @@ const Result = (props) => {
             <img className="survey-img" src={props.ad.image}/>
           </Card.Text>
 
-          <Card.Text>Your Response: {props.history ? 'Seen' : 'Not Seen'}</Card.Text>
+          <Card.Text>Your Response: {props.history.has_been_seen ? 'Seen' : 'Not Seen'}</Card.Text>
           <Card.Text>Population Stats</Card.Text>
           <Card.Text>Seen: {props.history.has_seen_total}</Card.Text>
           <Card.Text>Not Seen: {props.history.has_notseen_total}</Card.Text>
