@@ -48,7 +48,6 @@ class Home extends Component {
     const isFetching = this.state.isFetching;
     return (
       <div>
-        <Permission  {...this.props}>
         {isFetching
           ? <p>Loading Galleries</p>
           : <div>
@@ -58,7 +57,6 @@ class Home extends Component {
                   })}
           </div>
         }
-      </Permission>
       </div>
     );
   }
