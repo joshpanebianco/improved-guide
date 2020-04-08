@@ -83,6 +83,10 @@ class EditAd extends Component {
       this.patchAd(ad);
     }
 
+    handleDelete = (event) => {
+      event.preventDefault();
+      console.log("DELETE");
+    }
 
 
   render() {
@@ -123,7 +127,9 @@ class EditAd extends Component {
                 <input type="submit" value="Submit" className="btn btn-success mb-3"/>
             </div>
           </form>
-
+          <form onSubmit={this.handleDelete}>
+            <input type="submit" value="Delete" className="btn btn-success mb-3"/>
+          </form>
         </div>
       }
       </div>
