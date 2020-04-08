@@ -15,13 +15,12 @@ import {
   Row
 } from "react-bootstrap";
 
-class GalleryStats extends Component {
+class MyAds extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isFetching: false,
-      galleryId: props.match.params.galleryId,
-      gallery: {},
+      userId: props.user.id,
       allAds: [],
       historyInfo: [],
     }
@@ -96,4 +95,4 @@ const AdResult = (props) => {
   )
 }
 
-export default GalleryStats;
+export default MyAds;
