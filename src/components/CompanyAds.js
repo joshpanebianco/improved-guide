@@ -15,13 +15,13 @@ import {
   Row
 } from "react-bootstrap";
 
-class GalleryStats extends Component {
+class CompanyAds extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isFetching: false,
-      galleryId: props.match.params.galleryId,
-      gallery: {},
+      companyId: props.user.company_id,
+      company: {},
       allAds: [],
       historyInfo: [],
     }
@@ -29,10 +29,11 @@ class GalleryStats extends Component {
 
   fetchData = () => {
     this.setState({isFetching: true});
-    const SERVER_URL = 'https://campaign-markt.herokuapp.com/requests/histories/'+this.state.galleryId+'.json';
+    const SERVER_URL = 'https://campaign-markt.herokuapp.com/requests/ads/'+this.state.companyId+'.json';
+    // const SERVER_URL = 'http://localhost:3001/requests/ads/'+this.state.companyId+'.json';
     axios.get(SERVER_URL, {withCredentials: true}).then((results) => {
       this.setState({
-        gallery: results.data.gallery,
+        company: results.data.company,
         allAds: results.data.ads,
         historyInfo: results.data.history_info,
       });
@@ -49,9 +50,9 @@ class GalleryStats extends Component {
     const isFetching = this.state.isFetching;
     return (
       <div>
-        <h1>Statistics</h1>
+        <h1>{this.state.company.name} Ads</h1>
         {isFetching
-          ? <p>Loading Statistics</p>
+          ? <p>Loading Ads</p>
           : (
             <div>
               {
@@ -96,4 +97,4 @@ const AdResult = (props) => {
   )
 }
 
-export default GalleryStats;
+export default CompanyAds;

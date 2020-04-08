@@ -124,7 +124,7 @@ class Survey extends Component {
                         ? <p>Loading Your Responses</p>
                         : <div>
                           <Summary ads={this.state.allAds} histories={this.state.allHistories} historyInfo={this.state.historyInfo}/>
-                          <Link to="/home" >Check out more galleries</Link>
+                          <Link to="/explore" >Check out more galleries</Link>
                         </div>
                       }
                       </div>

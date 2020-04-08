@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {globalSetting} from './config/global.js';
+
 import {
   Navbar,
   Nav,
@@ -40,7 +42,7 @@ class CreateCompany extends Component {
         image: image
       }
 
-      axios.post('https://campaign-markt.herokuapp.com/companies', {company}, {withCredentials: true})
+      axios.post(globalSetting.SERVER_URL + 'companies', {company}, {withCredentials: true})
       .then(response => {
         console.log(response.data)
       })
