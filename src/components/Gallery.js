@@ -19,7 +19,7 @@ class Gallery extends Component {
     super();
     this.state = {
       name: '',
-      category: ''
+      category: '',
     }
   }
 
@@ -34,20 +34,16 @@ handleSubmit = (event) => {
   event.preventDefault();
   const {name, category} = this.state;
 
-  const galleryinfo = {
+  const gallery = {
     name: name,
-    category: category
+    category: category,
   };
 
-  axios.post('http://localhost:3001/galleries', {galleryinfo}, {withCredentials: true}).then((response) => {
+  axios.post('https://campaign-markt.herokuapp.com/galleries', {gallery}, {withCredentials: true}).then((response) => {
     console.log(response.data);
   })
 
 }
-
-
-
-
 
   render() {
     return(
