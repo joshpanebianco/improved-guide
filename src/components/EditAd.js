@@ -18,8 +18,7 @@ class EditAd extends Component {
     super(props);
     this.state = {
         isFetching: false,
-        // adId: props.match.params.adId,
-        adId: 10,
+        adId: props.match.params.adId,
         adInfo: [],
         name: '',
         ad_type: '',
@@ -32,8 +31,8 @@ class EditAd extends Component {
 
   fetchAd = () => {
     this.setState({isFetching: true});
-    const SERVER_URL = 'http://localhost:3001/ads/'+this.state.adId+'/edit.json';
-    // const SERVER_URL = 'https://campaign-markt.herokuapp.com/ads/'+this.state.adId+'/edit.json';
+    // const SERVER_URL = 'http://localhost:3001/ads/'+this.state.adId+'/edit.json';
+    const SERVER_URL = 'https://campaign-markt.herokuapp.com/ads/'+this.state.adId+'/edit.json';
     axios.get(SERVER_URL, {withCredentials: true}).then((results) => {
       this.setState({
         adInfo: results.data.ad,
@@ -51,8 +50,8 @@ class EditAd extends Component {
   }
 
   patchAd = (ad) => {
-    const SERVER_URL = 'http://localhost:3001/ads/'+this.state.adId+'.json';
-    // const SERVER_URL = 'https://campaign-markt.herokuapp.com/ads';
+    // const SERVER_URL = 'http://localhost:3001/ads/'+this.state.adId+'.json';
+    const SERVER_URL = 'https://campaign-markt.herokuapp.com/ads/'+this.state.adId+'.json';
     axios.patch(SERVER_URL, {ad}, {withCredentials: true}).then((results) => {
       console.log("SUBMITTED");
       this.redirect();
