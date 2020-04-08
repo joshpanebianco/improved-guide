@@ -32,17 +32,17 @@ class LandingPage extends Component {
 
 				<div className="benefits-section">
            <Row>
-	           <Col className="col-4 text-center justify-content-center">
+	           <Col className="col-md-4 col-sm-12 text-center justify-content-center">
 						    <img src="http://www.fillmurray.com/200/200" className="image-circle mb-3" />
 						    <h5>Benefit One</h5>
 								<p>More details about the benefit</p>
 						 </Col>
-						 <Col className="col-4 text-center">
+						 <Col className="col-md-4 col-sm-12 text-center">
                 <img src="http://www.fillmurray.com/201/200" className="image-circle mb-3" />
 						    <h5>Benefit Two</h5>
 								<p>More details about the benefit</p>
 						 </Col>
-						 <Col className="col-4 text-center">
+						 <Col className="col-md-4 col-sm-12 text-center">
                 <img src="http://www.fillmurray.com/202/200" className="image-circle mb-3" />
 						    <h5>Benefit Three</h5>
 								<p>More details about the benefit</p>
