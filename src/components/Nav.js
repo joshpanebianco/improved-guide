@@ -92,7 +92,7 @@ class Navigation extends Component {
                     {this.createCompany()}
 
                     <NavDropdown.Divider />
-                    <NavDropdown.Item as={Link} to="/logout">
+                    <NavDropdown.Item as={Link} to="/logout" onClick={this.handleClick}>
                       {/* <Nav.Link as={Link} to="/logout" onClick={this.handleClick}> */}
                         Log Out
                       {/* </Nav.Link> */}

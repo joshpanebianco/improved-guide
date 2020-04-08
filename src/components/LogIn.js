@@ -38,6 +38,7 @@ class LogIn extends Component {
     })
   }
 
+  // Log in function
   handleSubmit = (event) => {
     event.preventDefault();
     const {name, email, password} = this.state
@@ -47,7 +48,6 @@ class LogIn extends Component {
       password: password
     }
 
-    // Need to update url and redirect function if it works
     axios.post('https://campaign-markt.herokuapp.com/login', {user}, {withCredentials: true})
       .then(response => {
         if (response.data.logged_in) {
