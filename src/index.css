@@ -88,5 +88,10 @@ code {
 
 .homepage-cta {
   text-align: center;
+}
 
+.logo {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.5em;
+  letter-spacing: 3px;
 }
