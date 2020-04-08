@@ -75,7 +75,7 @@ class App extends Component {
 
               <Permission {...this.props} loggedInStatus={this.state.isLoggedIn}>
                 <Route path="/explore" render={props => (<Home {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
-                <Route path="/survey/:galleryId" component={ Survey } />
+                <Route path="/survey/:galleryId" render={props => (<Survey {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
                 <Route path="/gallery/new" render={props => (< Gallery {...props} user={ this.state.user} />)} />
                 <Route path= "/gallery/:userId" render={props => (<UserGalleries {...props} user={this.state.user} />)} />
                 <Route path="/stats/:galleryId" component={ GalleryStats } />
