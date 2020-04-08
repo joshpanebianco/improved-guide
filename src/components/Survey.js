@@ -175,7 +175,7 @@ class Gallery extends Component {
       ? (
         <div>
           <Row className="d-flex justify-content-center">
-            <Card className="shadow">
+            <Card className="survey-card shadow">
               <Card.Header as="h5" className="text-white bg-dark">{this.state.gallery.name}</Card.Header>
               <Card.Body>
                 <Card.Title>{this.state.gallery.name}</Card.Title>

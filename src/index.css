@@ -5,7 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align:center;
+}
+
+.App {
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 200px;
 }
 
 code {
@@ -41,6 +46,8 @@ code {
 .survey-img {
   width: 399px;
   height: 224px;
+  /* width: 800px;
+  height: 500px; */
 }
 
 .survey-btn {
@@ -55,4 +62,31 @@ code {
 
 .score-card {
   width: 439px;
+}
+
+
+/* Footer */
+
+.footer {
+  height: 100px;
+}
+
+.copyright {
+  color: #fff;
+  text-align: center;
+}
+
+.footer-area {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+/* .main-container {
+  height: 75vh;
+} */
+
+.homepage-cta {
+  text-align: center;
+
 }

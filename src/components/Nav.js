@@ -29,7 +29,7 @@ function Navigation(props) {
   return (
     <Navbar bg="primary" variant="dark" expand="lg" className="mb-4">
       <Container>
-        <Link to="home">
+        <Link to="/landingpage">
           <Navbar.Brand to="/">Markt</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
