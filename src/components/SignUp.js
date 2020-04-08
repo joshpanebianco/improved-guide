@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import {globalSetting} from './config/global'
 
 import {
   Navbar,
@@ -24,8 +25,18 @@ class SignUp extends Component {
         password: '',
         password_confirmation: '',
         company_id: '',
-        errors: ''
+        errors: '',
+        companies: []
     };
+
+    // why cannot use const getCompanies = function () {} ///// check answer======https://stackoverflow.com/questions/32535110/what-are-the-differences-if-any-between-es6-arrow-functions-and-functions-boun
+    const getCompanies = () => {
+      axios.get(globalSetting.SERVER_URL + 'requests/companies').then((results) => {
+        this.setState({companies: results.data.companies});
+        })
+    }
+
+    getCompanies()
   }
 
   handleChange = (event) => {
@@ -83,7 +94,7 @@ class SignUp extends Component {
         <h3>Create A New Account</h3>
         <form onSubmit={ this.handleSubmit }>
          <Form.Group className="w-50">
-            <Form.Label>Full name (which is full name, will update backend to hold first and last name)</Form.Label>
+            <Form.Label>Username</Form.Label>
             <Form.Control name="name" type="text" placeholder="Full name" value={ this.state.name } onChange={ this.handleChange } autoFocus required />
          </Form.Group>
 
@@ -103,8 +114,13 @@ class SignUp extends Component {
           </Form.Group>
 
           <Form.Group className="w-50">
-            <Form.Label>Organization (Optional)</Form.Label>
-            <Form.Control name="company_id" type="text" placeholder="Organization" value={ this.state.company_id } onChange={ this.handleChange } />
+            <Form.Label>Organization</Form.Label>
+            <Form.Control as="select" name="company_id" value={ this.state.company_id } onChange={ this.handleChange }>
+              <option value="">--</option>
+              {this.state.companies.map((company) => {
+                return (<option value={company.id}>{company.name}</option>);
+              })};
+            </Form.Control>
           </Form.Group>
 
           <div>
