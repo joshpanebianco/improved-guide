@@ -34,7 +34,7 @@ class Survey extends Component {
   }
 
   fetchGallery = () => {
-    const SERVER_URL = 'http://localhost:3000/requests/galleries/'+ this.state.galleryId +'.json';
+    const SERVER_URL = 'http://localhost:3001/requests/galleries/'+ this.state.galleryId +'.json';
     this.setState({...this.state, isFetching: true});
     axios.get(SERVER_URL, {withCredentials: false}).then(results => {
       this.setState({gallery: results.data.gallery});
@@ -138,7 +138,7 @@ class Gallery extends Component {
       ? (
         <div>
           <Row className="d-flex justify-content-center">
-            <Card className="shadow">
+            <Card className="survey-card shadow">
               <Card.Header as="h5" className="text-white bg-dark">{this.state.gallery.name}</Card.Header>
               <Card.Body>
                 <Card.Title>{this.state.gallery.name}</Card.Title>

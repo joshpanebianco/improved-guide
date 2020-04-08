@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   Navbar,
@@ -10,7 +11,7 @@ import {
   Container,
   NavItem,
 	Row,
-	Col,
+	Col
 } from "react-bootstrap";
 
 
@@ -19,13 +20,13 @@ class LandingPage extends Component {
     return (
       <div>
 				<div className="hero-image">
-        
+
         </div>
 
 				<div className="quote-section my-5">
 					<blockquote className="blockquote text-center">
-					 <p className="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-					 <footer className="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+					 <p className="mb-0">“Unless your advertising has a big idea, it will pass like a ship in the night”</p>
+					 <footer className="blockquote-footer">David Ogilvy<cite title="Source Title"></cite></footer>
 				 </blockquote>
 				</div>
 
@@ -48,6 +49,13 @@ class LandingPage extends Component {
 						 </Col>
 					 </Row>
 				</div>
+
+        <div className="homepage-cta my-5 pt-5 pb-5">
+          <h4>Gain Deeper Insights Into Your Advertising Campaigns</h4>
+          <Link to="/signup">
+            <Button variant="success" size="lg" className="mt-5 w-25">Get Started</Button>
+          </Link>
+        </div>
 
       </div>
     );
