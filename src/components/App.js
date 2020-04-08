@@ -9,6 +9,7 @@ import Gallery from './Gallery';
 import UserGalleries from './UserGalleries';
 import GalleryStats from './GalleryStats';
 import CreateAd from './CreateAd';
+import EditAd from './EditAd';
 import CompanyAds from './CompanyAds';
 import LandingPage from './LandingPage';
 import Footer from './Footer';
@@ -75,6 +76,7 @@ class App extends Component {
               <Route path= "/gallery/:userId" render={props => (<UserGalleries {...props} user={this.state.user} />)} />
               <Route path="/stats/:galleryId" component={ GalleryStats } />
               <Route path="/ads/new" render={props => (<CreateAd {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
+              <Route path="/ads/edit/:adId" render={props => (<EditAd {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
               <Route path="/ads/:companyId" render={props => (<CompanyAds {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
               <Route path="/landingpage" component={ LandingPage } />
 
