@@ -12,7 +12,9 @@ import {
   Button,
   Container,
   NavItem,
-  Card
+  Card,
+  Row,
+  Col
 } from "react-bootstrap";
 
 class Home extends Component {
@@ -68,23 +70,37 @@ class Gallery extends Component {
   render() {
     return (
 
-      <Card className="w-75 mb-4">
+      <Card className="w-50 mb-4">
 
         <Card.Header as="h5" className="text-white bg-dark">{this.props.gallery.name}</Card.Header>
-        <Card.Body>
-          <Card.Title>{this.props.gallery.category}</Card.Title>
-          {this.props.company !== null
-            ?   <Card.Text>
-                  <img className="img-logo" src={this.props.company.image} alt="Company logo" />
-                </Card.Text>
-            : null
-            }
-          <Link to={`/survey/${this.props.gallery.id}`}>
-            <Button className="mr-3" variant="primary">Start Survey</Button>
-          </Link>
-          <Link to={`/stats/${this.props.gallery.id}`}>
-            <Button variant="primary">See Responses</Button>
-          </Link>
+        <Card.Body className="d-flex align-items-center shadow">
+        <Container>
+          <Row>
+             <Col>
+             <div className="d-flex justify-content-start align-items-center">
+              {this.props.company !== null
+                ?   <Card.Text>
+                      <img className="img-logo" src={this.props.company.image} alt="Company logo" />
+                    </Card.Text>
+                : null
+                }
+                <Card.Title>{this.props.gallery.category}</Card.Title>
+               </div>
+              </Col>
+            </Row>
+          <Row>
+            <Col>
+              <div className="d-flex justify-content-start">
+                <Link to={`/survey/${this.props.gallery.id}`}>
+                  <Button className="mr-3" variant="success">Start Survey</Button>
+                </Link>
+                <Link to={`/stats/${this.props.gallery.id}`}>
+                  <Button variant="info">See Responses</Button>
+                </Link>
+              </div>
+            </Col>
+          </Row>
+         </Container>
         </Card.Body>
        </Card>
 
