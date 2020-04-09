@@ -71,39 +71,36 @@ class Gallery extends Component {
   render() {
     return (
 
-      <Card className="w-50 mb-4">
-
-        <Card.Header as="h5" className="text-white bg-dark">{this.props.gallery.name}</Card.Header>
-        <Card.Body className="d-flex align-items-center shadow">
-        <Container>
-          <Row>
-             <Col>
-             <div className="d-flex justify-content-start align-items-center">
-              {this.props.company !== null
-                ?   <Card.Text>
-                      <img className="img-logo" src={this.props.company.image} alt="Company logo" />
-                    </Card.Text>
-                : null
-                }
-                <Card.Title>{this.props.gallery.category}</Card.Title>
-               </div>
-              </Col>
-            </Row>
-          <Row>
-            <Col>
-              <div className="d-flex justify-content-start">
-                <Link to={`/survey/${this.props.gallery.id}`}>
-                  <Button className="mr-3" variant="success">Start Survey</Button>
-                </Link>
-                <Link to={`/stats/${this.props.gallery.id}`}>
-                  <Button variant="info">See Responses</Button>
-                </Link>
-              </div>
-            </Col>
-          </Row>
-         </Container>
-        </Card.Body>
-       </Card>
+      <Card className='w-25 mb-4'>
+				<Card.Header as='h5' className='text-white bg-dark'>
+					{this.props.gallery.name}
+				</Card.Header>
+				<Card.Body className='d-flex align-items-center shadow explore-card'>
+					<div className={'in-card card-left'}>
+						{this.props.company && (
+							<Card.Text>
+								<img
+									className='img-logo'
+									src={this.props.company.image}
+									alt='Company logo'
+								/>
+							</Card.Text>
+						)}
+						<Card.Title>{this.props.gallery.category}</Card.Title>
+					</div>
+					<div className={'in-card card-right'}>
+						<Button
+							href={`#/survey/${this.props.gallery.id}`}
+							variant='success'
+						>
+							Start Survey
+						</Button>
+						<Button href={`#/stats/${this.props.gallery.id}`} variant='info'>
+							See Survey
+						</Button>
+					</div>
+				</Card.Body>
+			</Card>
 
     );
   }
