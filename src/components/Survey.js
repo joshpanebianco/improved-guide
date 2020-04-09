@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import DataBar from './DataBar';
 
 import {
   Navbar,
@@ -11,6 +12,7 @@ import {
   Button,
   Container,
   NavItem,
+  CardGroup,
   Card,
   Row
 } from "react-bootstrap";
@@ -229,23 +231,28 @@ const Summary = (props) => {
 const Result = (props) => {
   return (
     <div>
-      <Row className="d-flex justify-content-center">
-      <Card className="w-75 mb-4">
-        <Card.Body>
-          <Card.Title>{props.ad.name}</Card.Title>
+     <Row className="d-flex justify-content-center">
+       <CardGroup>
+         <Card className="w-75 mb-4">
+           <Card.Body>
+             <Card.Title>{props.ad.name}</Card.Title>
 
-          <Card.Text>
-            <img className="survey-img" src={props.ad.image}/>
-          </Card.Text>
-
-          <Card.Text>Your Response: {props.history.has_been_seen ? 'Seen' : 'Not Seen'}</Card.Text>
-          <Card.Text>Population Stats</Card.Text>
-          <Card.Text>Seen: {props.history.has_seen_total}</Card.Text>
-          <Card.Text>Not Seen: {props.history.has_notseen_total}</Card.Text>
-          <Card.Text>Total: {props.history.total}</Card.Text>
-        </Card.Body>
-       </Card>
-     </Row>
+             <Card.Text>
+               <img className="survey-img" src={props.ad.image}/>
+             </Card.Text>
+           </Card.Body>
+          </Card>
+          <Card className="w-75 mb-4 text-center justify-content-center">
+            <Card.Body className="justify-content-center">
+              <Card.Title>Ad Stats</Card.Title>
+              <Card.Text>Have Seen / Have Not Seen</Card.Text>
+              <DataBar history={props.history}/>
+              <small>Total Responses: {props.history.total}</small>
+              <Card.Text>Your Response: {props.history.has_been_seen ? 'Seen' : 'Not Seen'}</Card.Text>
+            </Card.Body>
+           </Card>
+       </CardGroup>
+    </Row>
     </div>
   )
 }
