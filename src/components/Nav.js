@@ -18,7 +18,7 @@ class Navigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+
     }
   }
 
@@ -59,51 +59,54 @@ class Navigation extends Component {
             this.props.loggedInStatus
             ? (
                 <>
-                <NavDropdown title={this.props.user.name} id="nav-dropdown" className="nav-links">
-                  <NavDropdown.Item as={Link} to="/ads/new">
-                    {/* <Nav.Link as={Link} to="/ads/new"> */}
-                      CREATE AD
-                    {/* </Nav.Link> */}
+                <NavDropdown title={
+                    <span className="dropdown-style">{this.props.user.name}</span>
+                } id="basic-nav-dropdown" className="nav-links nav-style">
+                  <NavDropdown.Item>
+                    <Nav.Link as={Link} to="/ads/new">
+                      Create Ad
+                    </Nav.Link>
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to={`/ads/${this.props.user.company_id}`}>
-                    {/* <Nav.Link as={Link} to={`/ads/${this.props.user.company_id}`}> */}
-                      COMPANY ADS
-                    {/* </Nav.Link> */}
+                  <NavDropdown.Item>
+                    <Nav.Link as={Link} to={`/ads/company-ads/${this.props.user.company_id}`}>
+                      Company Ads
+                    </Nav.Link>
                   </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/gallery/new">
-                      {/* <Nav.Link as={Link} to="/gallery/new"> */}
-                        CREATE GALLERY
-                      {/* </Nav.Link> */}
+                    <NavDropdown.Item>
+                      <Nav.Link as={Link} to="/gallery/new">
+                        Create Gallery
+                      </Nav.Link>
                     </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/ad/new">
-                      {/* <Nav.Link as={Link} to="/ad/new"> */}
-                        MY GALLERIES
-                      {/* </Nav.Link> */}
+                    <NavDropdown.Item>
+                      <Nav.Link as={Link} to={`/gallery/user-galleries/${this.props.user.id}`}>
+                        My Galleries
+                      </Nav.Link>
                     </NavDropdown.Item>
-                    {/* {this.props.user.admin ? (
-                      <NavDropdown.Item as={link} to="/createcompany">
-                        CREATE COMPANY
-                      </NavDropdown.Item>
-                    )
+                    {this.props.user.admin
+                      ? (
+                          <NavDropdown.Item>
+                            <Nav.Link as={Link} to={`/createcompany`}>
+                              Create Company
+                            </Nav.Link>
+                          </NavDropdown.Item>
+                        )
                       : (
                         console.log('ok')
                       )
-                    } */}
-                    {this.createCompany()}
-
+                    }
                     <NavDropdown.Divider />
-                    <NavDropdown.Item as={Link} to="/logout" onClick={this.handleClick}>
-                      {/* <Nav.Link as={Link} to="/logout" onClick={this.handleClick}> */}
+                    <NavDropdown.Item>
+                      <Nav.Link as={Link} to="/logout" onClick={this.handleClick}>
                         Log Out
-                      {/* </Nav.Link> */}
+                      </Nav.Link>
                     </NavDropdown.Item>
                 </NavDropdown>
                 </>
             )
             : (
               <>
-                <Link to="/">
-                  <Button className="mr-3" variant="dark">Log In</Button>
+                <Link to="/login">
+                  <Button className="mr-3" variant="outline-light">Log In</Button>
                 </Link>
                 <Link to="/signup">
                   <Button variant="outline-light" to="/signup">Sign Up</Button>
