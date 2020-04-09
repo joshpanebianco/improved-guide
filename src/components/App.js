@@ -76,12 +76,12 @@ class App extends Component {
               <Permission {...this.props} loggedInStatus={this.state.isLoggedIn}>
                 <Route path="/explore" render={props => (<Home {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
                 <Route path="/survey/:galleryId" render={props => (<Survey {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
-                <Route path="/gallery/new" render={props => (< Gallery {...props} user={ this.state.user} />)} />
-                <Route path= "/gallery/:userId" render={props => (<UserGalleries {...props} user={this.state.user} />)} />
+                <Route path="/gallery/new" render={props => (<Gallery {...props} user={ this.state.user} />)} />
+                <Route path= "/gallery/user-galleries/:userId" render={props => (<UserGalleries {...props} user={this.state.user} />)} />
                 <Route path="/stats/:galleryId" component={ GalleryStats } />
-                <Route path="/ads/new" render={props => (<CreateAd {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
+                <Route exact path="/ads/new" render={props => (<CreateAd {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
                 <Route path="/ads/edit/:adId" render={props => (<EditAd {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
-                <Route path="/ads/:companyId" render={props => (<CompanyAds {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
+                <Route exact path="/ads/company-ads/:companyId" render={props => (<CompanyAds {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
 
                 <Route path="/createcompany" component={ CreateCompany } />
               </Permission>

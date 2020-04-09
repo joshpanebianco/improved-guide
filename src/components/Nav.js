@@ -60,23 +60,23 @@ class Navigation extends Component {
             ? (
                 <>
                 <NavDropdown title={this.props.user.name} id="nav-dropdown" className="nav-links">
-                  <NavDropdown.Item as={Link} to="/ads/new">
+                  <NavDropdown.Item>
                     <Nav.Link as={Link} to="/ads/new">
                       CREATE AD
                     </Nav.Link>
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to={`/ads/${this.props.user.company_id}`}>
-                    <Nav.Link as={Link} to={`/ads/${this.props.user.company_id}`}>
+                  <NavDropdown.Item>
+                    <Nav.Link as={Link} to={`/ads/company-ads/${this.props.user.company_id}`}>
                       COMPANY ADS
                     </Nav.Link>
                   </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/gallery/new">
+                    <NavDropdown.Item>
                       <Nav.Link as={Link} to="/gallery/new">
                         CREATE GALLERY
                       </Nav.Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item>
-                      <Nav.Link as={Link} to={`/gallery/${this.props.user.id}`}>
+                      <Nav.Link as={Link} to={`/gallery/user-galleries/${this.props.user.id}`}>
                         MY GALLERIES
                       </Nav.Link>
                     </NavDropdown.Item>
@@ -91,7 +91,7 @@ class Navigation extends Component {
                       )
                     }
                     <NavDropdown.Divider />
-                    <NavDropdown.Item as={Link} to="/logout">
+                    <NavDropdown.Item>
                       <Nav.Link as={Link} to="/logout" onClick={this.handleClick}>
                         Log Out
                       </Nav.Link>
