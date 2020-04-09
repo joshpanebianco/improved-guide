@@ -103,7 +103,7 @@ class Navigation extends Component {
             )
             : (
               <>
-                <Link to="/">
+                <Link to="/login">
                   <Button className="mr-3" variant="dark">Log In</Button>
                 </Link>
                 <Link to="/signup">
