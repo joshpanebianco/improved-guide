@@ -50,6 +50,7 @@ class Home extends Component {
     const isFetching = this.state.isFetching;
     return (
       <div>
+        <h1>Explore Galleries</h1>
         {isFetching
           ? <p>Loading Galleries</p>
           : <div>

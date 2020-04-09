@@ -96,6 +96,14 @@ code {
   letter-spacing: 3px;
 }
 
+#basic-nav-dropdown {
+  color: rgba(255,255,255,0.6);
+}
+
+#basic-nav-dropdown:hover {
+  color: rgba(255,255,255,0.8);
+}
+
 #content {
 	text-align: center;
 	padding-top: 15%;

@@ -59,31 +59,35 @@ class Navigation extends Component {
             this.props.loggedInStatus
             ? (
                 <>
-                <NavDropdown title={this.props.user.name} id="nav-dropdown" className="nav-links nav-style">
+                <NavDropdown title={
+                    <span className="dropdown-style">{this.props.user.name}</span>
+                } id="basic-nav-dropdown" className="nav-links nav-style">
                   <NavDropdown.Item>
                     <Nav.Link as={Link} to="/ads/new">
-                      CREATE AD
+                      Create Ad
                     </Nav.Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item>
                     <Nav.Link as={Link} to={`/ads/company-ads/${this.props.user.company_id}`}>
-                      COMPANY ADS
+                      Company Ads
                     </Nav.Link>
                   </NavDropdown.Item>
                     <NavDropdown.Item>
                       <Nav.Link as={Link} to="/gallery/new">
-                        CREATE GALLERY
+                        Create Gallery
                       </Nav.Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item>
                       <Nav.Link as={Link} to={`/gallery/user-galleries/${this.props.user.id}`}>
-                        MY GALLERIES
+                        My Galleries
                       </Nav.Link>
                     </NavDropdown.Item>
                     {this.props.user.admin
                       ? (
-                          <NavDropdown.Item as={Link} to="/createcompany">
-                            CREATE COMPANY
+                          <NavDropdown.Item>
+                            <Nav.Link as={Link} to={`/createcompany`}>
+                              Create Company
+                            </Nav.Link>
                           </NavDropdown.Item>
                         )
                       : (
@@ -102,7 +106,7 @@ class Navigation extends Component {
             : (
               <>
                 <Link to="/login">
-                  <Button className="mr-3" variant="dark">Log In</Button>
+                  <Button className="mr-3" variant="outline-light">Log In</Button>
                 </Link>
                 <Link to="/signup">
                   <Button variant="outline-light" to="/signup">Sign Up</Button>
