@@ -74,12 +74,12 @@ class Gallery extends Component {
           <Card.Title>{this.props.gallery.category}</Card.Title>
           {this.props.company !== null
             ?   <Card.Text>
-                  <img src={this.props.company.image} alt="Company logo" />
+                  <img className="img-logo" src={this.props.company.image} alt="Company logo" />
                 </Card.Text>
             : null
             }
           <Link to={`/survey/${this.props.gallery.id}`}>
-            <Button variant="primary">Start Survey</Button>
+            <Button className="mr-3" variant="primary">Start Survey</Button>
           </Link>
           <Link to={`/stats/${this.props.gallery.id}`}>
             <Button variant="primary">See Responses</Button>
