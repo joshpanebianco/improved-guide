@@ -73,26 +73,32 @@ class Gallery extends Component {
       <Card className="w-75 mb-4">
 
         <Card.Header as="h5" className="text-white bg-dark">{this.props.gallery.name}</Card.Header>
-        <Card.Body>
+        <Card.Body className="d-flex align-items-center shadow">
           <Container>
-            <div className="row justify-content-start">
-              <Card.Title>{this.props.gallery.category}</Card.Title>
-            </div>
-            <div className="row">
-              <div className="col-md-3">
+            <Row>
+              <Col>
+                <div className="d-flex justify-content-start align-items-center">
+                  <Card.Title>{this.props.gallery.category}</Card.Title>
+                </div>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
+                <div className="d-flex justify-content-start">
+
                 <Link to={`/survey/${this.props.gallery.id}`}>
-                  <Button variant="primary">Start Survey</Button>
+                  <Button className="mr-3" variant="success">Start Survey</Button>
                 </Link>
-              </div>
-              <div className="col-md-3">
+
                 <Link to={`/stats/${this.props.gallery.id}`}>
-                  <Button variant="primary">See Responses</Button>
+                  <Button variant="info">See Responses</Button>
                 </Link>
-              </div>
-              <div className="col-md-2 offset-md-4">
+                </div>
+              </Col>
+            </Row>
                 <Link to={`/gallery/edit/${this.props.gallery.id}`}>Edit</Link>
-              </div>
-            </div>
+
           </Container>
         </Card.Body>
        </Card>
