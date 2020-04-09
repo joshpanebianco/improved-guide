@@ -47,6 +47,7 @@ class UserGalleries extends Component {
     const isFetching = this.state.isFetching;
     return (
       <div>
+        <h1>My Galleries</h1>
         {isFetching
           ? <p>Loading Galleries</p>
           : <div>

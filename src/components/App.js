@@ -79,12 +79,12 @@ class App extends Component {
                 <Route path="/survey/:galleryId" render={props => (<Survey {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
                 <Route path="/gallery/new" render={props => (< Gallery {...props} user={ this.state.user} />)} />
                 <Route exact path= "/gallery/edit/:galleryId" render={props => (<EditGallery {...props} user={this.state.user} />)} />
-                <Route exact path= "/gallery/:userId" render={props => (<UserGalleries {...props} user={this.state.user} />)} />
+                <Route path= "/gallery/user-galleries/:userId" render={props => (<UserGalleries {...props} user={this.state.user} />)} />
 
                 <Route path="/stats/:galleryId" component={ GalleryStats } />
-                <Route path="/ads/new" render={props => (<CreateAd {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
+                <Route exact path="/ads/new" render={props => (<CreateAd {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
                 <Route path="/ads/edit/:adId" render={props => (<EditAd {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
-                <Route path="/ads/:companyId" render={props => (<CompanyAds {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
+                <Route exact path="/ads/company-ads/:companyId" render={props => (<CompanyAds {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
 
                 <Route path="/createcompany" component={ CreateCompany } />
               </Permission>
@@ -95,25 +95,6 @@ class App extends Component {
       </Router>
     );
   }
-// function App() {
-//   return (
-//     <Router>
-//       <div className="App">
-//         <Nav />
-//         <Container>
-//           <Switch>
-//             <Route exact path="/" component={ LogIn } />
-//             <Route path="/signup" component={ SignUp } />
-//             <Route path="/forgetpass" component={ ForgetPass } />
-//             <Route path="/home" component={ Home } />
-//             <Route path="/survey" component={ Survey } />
-//             <Route path="/campaign" component={ Campaign } />
-//             <Route path="/landingpage" component={ LandingPage } />
-//           </Switch>
-//         </Container>
-//       </div>
-//     </Router>
-//   );
 }
 
 export default App;

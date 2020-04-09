@@ -52,7 +52,7 @@ class CreateAd extends Component {
   }
 
   redirect = () => {
-    this.props.history.push(`/ads/${this.state.company_id}`)
+    this.props.history.push(`/ads/company-ads/${this.state.company_id}`)
   }
 
     handleChange = (event) => {
