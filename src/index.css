@@ -118,6 +118,34 @@ code {
   max-height: 100px;
 }
 
+
+/* Alex Code */
+
+.img-logo {
+	max-width: 100px;
+	max-height: 100px;
+}
+.in-card {
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0.5rem 0;
+}
+.in-card > * {
+	margin: 0 0.5rem;
+}
+.explore-card {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+
+
 /* =======================
 DATABAR STYLING
 ======================= */
