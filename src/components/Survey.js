@@ -51,7 +51,7 @@ class Survey extends Component {
   }
 
   fetchGallery = () => {
-    const SERVER_URL = 'https://campaign-markt.herokuapp.com/requests/galleries/'+ this.state.galleryId +'.json';
+    const SERVER_URL = 'https://campaign-markt.herokuapp.com/requests/galleries/'+ this.state.galleryId +'/'+ this.props.user.id +'.json';
     this.setState({...this.state, isFetching: true});
     axios.get(SERVER_URL, {withCredentials: true, headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(results => {
       this.setState({gallery: results.data.gallery});

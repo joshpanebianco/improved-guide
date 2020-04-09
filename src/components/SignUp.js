@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import {globalSetting} from './config/global'
+import {Link} from 'react-router-dom';
 
 import {
   Navbar,
@@ -132,6 +133,9 @@ class SignUp extends Component {
               this.state.errors ? this.handleErrors() : null
             }
         </div>
+        <Link to="/login">
+        <p>Already signed up?</p>
+        </Link>
       </div>
     );
   }
