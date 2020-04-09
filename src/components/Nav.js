@@ -59,7 +59,7 @@ class Navigation extends Component {
             this.props.loggedInStatus
             ? (
                 <>
-                <NavDropdown title={this.props.user.name} id="nav-dropdown" className="nav-links">
+                <NavDropdown title={this.props.user.name} id="nav-dropdown" className="nav-links nav-style">
                   <NavDropdown.Item>
                     <Nav.Link as={Link} to="/ads/new">
                       CREATE AD
