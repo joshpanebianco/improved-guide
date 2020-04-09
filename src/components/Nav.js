@@ -63,41 +63,40 @@ class Navigation extends Component {
 
                 <NavDropdown title={this.props.user.name} id="nav-dropdown" className="nav-links">
                   <NavDropdown.Item as={Link} to="/ads/new">
-                    {/* <Nav.Link as={Link} to="/ads/new"> */}
+                    <Nav.Link as={Link} to="/ads/new">
                       CREATE AD
-                    {/* </Nav.Link> */}
+                    </Nav.Link>
                   </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to={`/ads/${this.props.user.company_id}`}>
-                    {/* <Nav.Link as={Link} to={`/ads/${this.props.user.company_id}`}> */}
+                    <Nav.Link as={Link} to={`/ads/${this.props.user.company_id}`}>
                       COMPANY ADS
-                    {/* </Nav.Link> */}
+                    </Nav.Link>
                   </NavDropdown.Item>
                     <NavDropdown.Item as={Link} to="/gallery/new">
-                      {/* <Nav.Link as={Link} to="/gallery/new"> */}
+                      <Nav.Link as={Link} to="/gallery/new">
                         CREATE GALLERY
-                      {/* </Nav.Link> */}
+                      </Nav.Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item>
-                      <Nav.Link as={Link} to={`/gallery/${props.user.id}`}>
+                      <Nav.Link as={Link} to={`/gallery/${this.props.user.id}`}>
                         MY GALLERIES
-                      {/* </Nav.Link> */}
-                    </NavDropdown.Item>
-                    {/* {this.props.user.admin ? (
-                      <NavDropdown.Item as={link} to="/createcompany">
-                        CREATE COMPANY
-                      </NavDropdown.Item>
-                    )
+                      </Nav.Link>
+                    </NavDropdown.Item> 
+                    {this.props.user.admin
+                      ? (
+                          <NavDropdown.Item as={Link} to="/createcompany">
+                            CREATE COMPANY
+                          </NavDropdown.Item>
+                        )
                       : (
                         console.log('ok')
                       )
-                    } */}
-                    {this.createCompany()}
-
+                    }
                     <NavDropdown.Divider />
                     <NavDropdown.Item as={Link} to="/logout">
-                      {/* <Nav.Link as={Link} to="/logout" onClick={this.handleClick}> */}
+                      <Nav.Link as={Link} to="/logout" onClick={this.handleClick}>
                         Log Out
-                      {/* </Nav.Link> */}
+                      </Nav.Link>
                     </NavDropdown.Item>
                 </NavDropdown>
                 </>

@@ -78,9 +78,7 @@ class Gallery extends Component {
           <Link to={`/stats/${this.props.gallery.id}`}>
             <Button variant="primary">See Responses</Button>
           </Link>
-          <Link to={`/gallery/edit/${this.props.gallery.id}`}>
-            <Button type="button" className="btn btn-primary btn-sm">Edit</Button>
-          </Link>
+          <Link to={`/gallery/edit/${this.props.gallery.id}`}>Edit</Link>
         </Card.Body>
        </Card>
 
