@@ -95,3 +95,11 @@ code {
   font-size: 1.5em;
   letter-spacing: 3px;
 }
+
+#basic-nav-dropdown {
+  color: rgba(255,255,255,0.6);
+}
+
+#basic-nav-dropdown:hover {
+  color: rgba(255,255,255,0.8);
+}
