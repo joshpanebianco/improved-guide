@@ -11,7 +11,9 @@ import {
   Button,
   Container,
   NavItem,
-  Card
+  Card,
+  Row,
+  Col
 } from "react-bootstrap";
 
 class UserGalleries extends Component {
@@ -72,14 +74,26 @@ class Gallery extends Component {
 
         <Card.Header as="h5" className="text-white bg-dark">{this.props.gallery.name}</Card.Header>
         <Card.Body>
-          <Card.Title>{this.props.gallery.category}</Card.Title>
-          <Link to={`/survey/${this.props.gallery.id}`}>
-            <Button variant="primary">Start Survey</Button>
-          </Link>
-          <Link to={`/stats/${this.props.gallery.id}`}>
-            <Button variant="primary">See Responses</Button>
-          </Link>
-          <Link to={`/gallery/edit/${this.props.gallery.id}`}>Edit</Link>
+          <Container>
+            <div className="row justify-content-start">
+              <Card.Title>{this.props.gallery.category}</Card.Title>
+            </div>
+            <div className="row">
+              <div className="col-md-3">
+                <Link to={`/survey/${this.props.gallery.id}`}>
+                  <Button variant="primary">Start Survey</Button>
+                </Link>
+              </div>
+              <div className="col-md-3">
+                <Link to={`/stats/${this.props.gallery.id}`}>
+                  <Button variant="primary">See Responses</Button>
+                </Link>
+              </div>
+              <div className="col-md-2 offset-md-4">
+                <Link to={`/gallery/edit/${this.props.gallery.id}`}>Edit</Link>
+              </div>
+            </div>
+          </Container>
         </Card.Body>
        </Card>
 
