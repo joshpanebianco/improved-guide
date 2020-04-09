@@ -32,7 +32,7 @@ class SignUp extends Component {
 
     // why cannot use const getCompanies = function () {} ///// check answer======https://stackoverflow.com/questions/32535110/what-are-the-differences-if-any-between-es6-arrow-functions-and-functions-boun
     const getCompanies = () => {
-      axios.get(globalSetting.SERVER_URL + 'requests/companies').then((results) => {
+      axios.get(globalSetting.SERVER_URL + 'companies').then((results) => {
         this.setState({companies: results.data.companies});
         })
     }
@@ -119,7 +119,7 @@ class SignUp extends Component {
             <Form.Control as="select" name="company_id" value={ this.state.company_id } onChange={ this.handleChange }>
               <option value="">--</option>
               {this.state.companies.map((company) => {
-                return (<option value={company.id}>{company.name}</option>);
+                return (<option key={company.id} value={company.id}>{company.name}</option>);
               })};
             </Form.Control>
           </Form.Group>

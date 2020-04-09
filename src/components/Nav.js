@@ -81,7 +81,7 @@ class Navigation extends Component {
                       <Nav.Link as={Link} to={`/gallery/user-galleries/${this.props.user.id}`}>
                         My Galleries
                       </Nav.Link>
-                    </NavDropdown.Item>
+                    </NavDropdown.Item> 
                     {this.props.user.admin
                       ? (
                           <NavDropdown.Item>
