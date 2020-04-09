@@ -59,7 +59,7 @@ class EditAd extends Component {
   }
 
   redirect = () => {
-    this.props.history.push(`/ads/${this.state.company_id}`);
+    this.props.history.push(`/ads/company-ads/${this.state.company_id}`);
   }
 
     handleChange = (event) => {
@@ -85,8 +85,27 @@ class EditAd extends Component {
 
     handleDelete = (event) => {
       event.preventDefault();
-      console.log("DELETE");
+      const {name, ad_type, company_id, user_id, image} = this.state
+
+      let ad = {
+        name: name,
+        ad_type: ad_type,
+        company_id: company_id,
+        user_id: user_id,
+        image: image,
+      }
+
+      const SERVER_URL = 'https://campaign-markt.herokuapp.com/ads/'+this.state.adId+'.json';
+      // const SERVER_URL = 'http://localhost:3001/ads/'+this.state.adId+'.json';
+      axios.delete(SERVER_URL, {ad}, {withCredentials: true}).then((result) => {
+        console.log(result);
+        console.log(result.data);
+        this.redirect();
+      })
+
     }
+
+
 
 
   render() {
