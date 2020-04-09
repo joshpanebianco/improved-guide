@@ -88,7 +88,7 @@ const SERVER_URL = 'https://campaign-markt.herokuapp.com/galleries';
 
 }
 redirect = () => {
-  this.props.history.push('/')
+  this.props.history.push(`/gallery/${ this.props.user_id }`)
 }
 
 

@@ -25,7 +25,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isLoggedIn: false,
+      isLoggedIn: true,
       user: {}
     };
   }
@@ -56,7 +56,7 @@ class App extends Component {
 
   handleLogout = () => {
     this.setState({
-      isLoggedIn: false,
+      isLoggedIn: true,
       user: {}
     })
   }
@@ -78,7 +78,9 @@ class App extends Component {
                 <Route path="/explore" render={props => (<Home {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
                 <Route path="/survey/:galleryId" render={props => (<Survey {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
                 <Route path="/gallery/new" render={props => (< Gallery {...props} user={ this.state.user} />)} />
-                <Route path= "/gallery/:userId" render={props => (<UserGalleries {...props} user={this.state.user} />)} />
+                <Route exact path= "/gallery/edit/:galleryId" render={props => (<EditGallery {...props} user={this.state.user} />)} />
+                <Route exact path= "/gallery/:userId" render={props => (<UserGalleries {...props} user={this.state.user} />)} />
+
                 <Route path="/stats/:galleryId" component={ GalleryStats } />
                 <Route path="/ads/new" render={props => (<CreateAd {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
                 <Route path="/ads/edit/:adId" render={props => (<EditAd {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />

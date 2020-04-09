@@ -23,30 +23,30 @@ class EditGallery extends Component {
       category: '',
       allAds: [],
       allCheckedAds: [],
-      user_id: props.user.id,
-      galleryId: props.match.params.galleryId,
-      // galleryId: 4
-      // user_id: 7
+      // user_id: props.user.id,
+      // galleryId: props.match.params.galleryId,
+      galleryId: 4,
+      user_id: 5,
+      isChecked: []
     }
   }
 
 fetchGallery = () => {
   this.setState({isFetching: true});
   // const SERVER_URL = 'https://campaign-markt.herokuapp.com/galleries/'+ this.state.galleryId +'/edit.json';
-  const SERVER_URL = 'http://localhost:3001/galleries'+ this.state.galleryId+'/edit.json';
+  const SERVER_URL = 'http://localhost:3001/galleries/'+ this.state.galleryId+'/edit.json';
   axios.get(SERVER_URL, {withCredentials: true}).then((results) => {
     console.log(results);
     this.setState({
 
       name: results.data.gallery.name,
       category: results.data.gallery.category,
-      allCheckedAds: results.data.ads
-
+      allAds: results.data.ads,
+      allCheckedAds: results.data.gallery_ads
 
     });
     this.setState({isFetching: false});
-    console.log(this.state.allAds);
-
+console.log(this.state.allCheckedAds);
   })
 }
 
@@ -104,35 +104,53 @@ redirect = () => {
   this.props.history.push(`/gallery/${ this.state.user_id }`)
 }
 
-
+toggleChange = () => {
+  this.setState({isChecked: !this.state.isChecked});
+}
 
   render() {
     return(
       <div>
-              <h3>Edit Gallery</h3>
-                <form onSubmit={ this.handleSubmit }>
-                <Form.Group className="w-50">
-                   <Form.Label>Gallery</Form.Label>
-                   <Form.Control name="name" type="text" placeholder="Gallery name" value={ this.state.name } onChange={ this.handleChange } autoFocus required />
-                </Form.Group>
-                <Form.Group className="w-50">
-                   <Form.Label>Type</Form.Label>
-                   <Form.Control name="category" type="text" placeholder="Type" value={ this.state.category } onChange={ this.handleChange } autoFocus required />
-                </Form.Group>
+        <h3>Edit Gallery</h3>
+          <form onSubmit={ this.handleSubmit }>
+          <Form.Group className="w-50">
+             <Form.Label>Gallery</Form.Label>
+             <Form.Control name="name" type="text" placeholder="Gallery name" value={ this.state.name } onChange={ this.handleChange } autoFocus required />
+          </Form.Group>
+          <Form.Group className="w-50">
+             <Form.Label>Type</Form.Label>
+             <Form.Control name="category" type="text" placeholder="Type" value={ this.state.category } onChange={ this.handleChange } autoFocus required />
+          </Form.Group>
 
-                <form onChange={this.handleCheck} >
-                  {this.state.allAds.map((ad) =>
-                    <div key={ad.id} className="mb-3">
-                    <Form.Check name="allCheckedAds" type="checkbox" id="default-checkbox" label={ad.name} value={ad.id} />
+          <form onChange={this.handleCheck} >
+            {this.state.allAds.map((ad, index) =>
+              {
+                // let adchecked = false;
+                const {allCheckedAds} = this.state;
+                console.log(allCheckedAds);
+                for (let i = 0; i < allCheckedAds.length; i++ ) {
+                    console.log(allCheckedAds[i].id);
+                  if ( allCheckedAds[i].id === ad.id ) {
+                    // this.setState({isChecked: true})
 
-                     </div>
-                   )}
-                </form>
+                  }
+                }
 
-                      <input type="submit" value="Create"className="btn btn-success mb-3" />
 
-                </form>
-            </div>
+                return (
+                <div key={ad.id} className="mb-3">
+                <Form.Check name="allCheckedAds" type="checkbox" id="default-checkbox" label={ad.name} value={ad.id} checked={ this.state.isChecked } onChange={ this.toggleChange } />
+
+                 </div>)
+               }
+
+             )}
+          </form>
+
+                <input type="submit" value="Create"className="btn btn-success mb-3" />
+
+          </form>
+      </div>
     );
   }
 }
