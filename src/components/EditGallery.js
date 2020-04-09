@@ -23,30 +23,48 @@ class EditGallery extends Component {
       category: '',
       allAds: [],
       allCheckedAds: [],
-      // user_id: props.user.id,
-      // galleryId: props.match.params.galleryId,
-      galleryId: 4,
-      user_id: 5,
-      isChecked: []
+      user_id: props.user.id,
+      galleryId: props.match.params.galleryId,
+      // galleryId: 8,
+      // user_id: 6,
+      isAdChecked: [],
     }
   }
 
 fetchGallery = () => {
   this.setState({isFetching: true});
-  // const SERVER_URL = 'https://campaign-markt.herokuapp.com/galleries/'+ this.state.galleryId +'/edit.json';
-  const SERVER_URL = 'http://localhost:3001/galleries/'+ this.state.galleryId+'/edit.json';
+  const SERVER_URL = 'https://campaign-markt.herokuapp.com/galleries/'+ this.state.galleryId +'/edit.json';
+  // const SERVER_URL = 'http://localhost:3001/galleries/'+ this.state.galleryId+'/edit.json';
   axios.get(SERVER_URL, {withCredentials: true}).then((results) => {
-    console.log(results);
+    const isAdChecked = [];
+    for (let i = 0; i < results.data.ads.length; i++) {
+      isAdChecked.push(false);
+    }
+    results.data.ads.forEach((ad, index) => {
+      results.data.gallery_ads.forEach((checked_ad) => {
+        if (ad.id === checked_ad.id) {
+          isAdChecked[index] = true;
+        }
+      })
+    })
+
+    // convert gallery_ads to ad ids and put into array to give to allCheckAds
+    const allCheckedAds = [];
+    results.data.gallery_ads.forEach((ad) => {
+      allCheckedAds.push(ad.id.toString());
+    })
+
     this.setState({
 
       name: results.data.gallery.name,
       category: results.data.gallery.category,
       allAds: results.data.ads,
-      allCheckedAds: results.data.gallery_ads
+      allCheckedAds: allCheckedAds,
+      isAdChecked: isAdChecked,
 
     });
     this.setState({isFetching: false});
-console.log(this.state.allCheckedAds);
+
   })
 }
 
@@ -54,9 +72,16 @@ console.log(this.state.allCheckedAds);
     this.fetchGallery();
   }
 
+toggleChange = (index) => {
+  const currentCheck = this.state.isAdChecked[index];
+  const isAdChecked = this.state.isAdChecked;
+  isAdChecked[index] = !isAdChecked[index]
+  console.log(isAdChecked[index]);
+  this.setState({isAdChecked: isAdChecked});
+}
 
 handleCheck = (event) => {
-  // console.log(event.target);
+
   const {name, value} = event.target;
   this.setState({
     [name]: value
@@ -68,9 +93,8 @@ handleCheck = (event) => {
   } else {
     allCheckedAds.push(newad);
   }
-  // console.log(allCheckedAds.indexOf(value));
-  this.setState({allCheckedAds: allCheckedAds});
   console.log(allCheckedAds);
+  this.setState({allCheckedAds: allCheckedAds});
 }
 
 handleChange = (event) => {
@@ -91,8 +115,8 @@ handleSubmit = (event) => {
     user_id: user_id
   };
 console.log(gallery);
-// const SERVER_URL = 'https://campaign-markt.herokuapp.com/galleries/'+ this.state.galleryId +'.json';
-const SERVER_URL = 'http://localhost:3001/galleries/'+ this.state.galleryId +'.json';
+const SERVER_URL = 'https://campaign-markt.herokuapp.com/galleries/'+ this.state.galleryId +'.json';
+// const SERVER_URL = 'http://localhost:3001/galleries/'+ this.state.galleryId +'.json';
   axios.patch(SERVER_URL, {gallery}, {withCredentials: true}).then((response) => {
 
   console.log("SUBMITTED");
@@ -101,11 +125,7 @@ const SERVER_URL = 'http://localhost:3001/galleries/'+ this.state.galleryId +'.j
 
 }
 redirect = () => {
-  this.props.history.push(`/gallery/${ this.state.user_id }`)
-}
-
-toggleChange = () => {
-  this.setState({isChecked: !this.state.isChecked});
+  this.props.history.push(`/gallery/user-galleries/${ this.state.user_id }`)
 }
 
   render() {
@@ -125,21 +145,9 @@ toggleChange = () => {
           <form onChange={this.handleCheck} >
             {this.state.allAds.map((ad, index) =>
               {
-                // let adchecked = false;
-                const {allCheckedAds} = this.state;
-                console.log(allCheckedAds);
-                for (let i = 0; i < allCheckedAds.length; i++ ) {
-                    console.log(allCheckedAds[i].id);
-                  if ( allCheckedAds[i].id === ad.id ) {
-                    // this.setState({isChecked: true})
-
-                  }
-                }
-
-
                 return (
                 <div key={ad.id} className="mb-3">
-                <Form.Check name="allCheckedAds" type="checkbox" id="default-checkbox" label={ad.name} value={ad.id} checked={ this.state.isChecked } onChange={ this.toggleChange } />
+                <Form.Check name="allCheckedAds" type="checkbox" id="default-checkbox" label={ad.name} value={ad.id} checked={ this.state.isAdChecked[index] } onChange={() => this.toggleChange(index) } />
 
                  </div>)
                }
