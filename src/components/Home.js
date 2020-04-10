@@ -101,7 +101,7 @@ class Gallery extends Component {
 					</div>
 				</Card.Body>
 			 </Card>
-
+    
     );
   }
 }

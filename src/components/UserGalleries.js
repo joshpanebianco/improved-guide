@@ -70,7 +70,7 @@ class Gallery extends Component {
   render() {
     return (
 
-      <Card className="w-75 mb-4">
+      <Card className="w-50 mb-4">
 
         <Card.Header as="h5" className="text-white bg-dark">{this.props.gallery.name}</Card.Header>
         <Card.Body className="d-flex align-items-center shadow">
@@ -86,18 +86,21 @@ class Gallery extends Component {
             <Row>
               <Col>
                 <div className="d-flex justify-content-start">
+                  <Link to={`/survey/${this.props.gallery.id}`}>
+                    <Button className="mr-3" variant="success">Start Survey</Button>
+                  </Link>
 
-                <Link to={`/survey/${this.props.gallery.id}`}>
-                  <Button className="mr-3" variant="success">Start Survey</Button>
-                </Link>
+                  <Link to={`/stats/${this.props.gallery.id}`}>
+                    <Button className="mr-3" variant="info">See Responses</Button>
+                  </Link>
 
-                <Link to={`/stats/${this.props.gallery.id}`}>
-                  <Button variant="info">See Responses</Button>
-                </Link>
+                  <Link to={`/gallery/edit/${this.props.gallery.id}`}>
+                   <Button variant="warning">Edit</Button>
+                  </Link>
                 </div>
               </Col>
             </Row>
-                <Link to={`/gallery/edit/${this.props.gallery.id}`}>Edit</Link>
+
 
           </Container>
         </Card.Body>
