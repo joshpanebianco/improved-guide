@@ -182,3 +182,7 @@ DATABAR STYLING
   /* background-color: #DC3544; */
   background-color: red;
 }
+
+.cd-box {
+  width: 100%;
+}

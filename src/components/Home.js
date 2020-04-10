@@ -4,14 +4,8 @@ import axios from 'axios';
 import Permission from './Permission';
 
 import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
   Button,
   Container,
-  NavItem,
   Card,
   Row,
   Col
@@ -51,15 +45,21 @@ class Home extends Component {
     return (
       <div>
         <h1>Explore Galleries</h1>
-        {isFetching
-          ? <p>Loading Galleries</p>
-          : <div>
-            {this.state.galleries.map ((gallery, index) => {
-                    const company = this.state.companies[index]
-                    return (<Gallery key={gallery.id} gallery={gallery} company={company} />)
-                  })}
-          </div>
-        }
+        <Container>
+          <Row>
+
+             {isFetching
+               ? <p>Loading Galleries</p>
+               : <div>
+                 {this.state.galleries.map ((gallery, index) => {
+                         const company = this.state.companies[index]
+                         return (<Gallery key={gallery.id} gallery={gallery} company={company} />)
+                       })}
+               </div>
+             }
+
+          </Row>
+        </Container>
       </div>
     );
   }
@@ -71,7 +71,7 @@ class Gallery extends Component {
   render() {
     return (
 
-      <Card className='w-25 mb-4'>
+      <Card className='mb-4'>
 				<Card.Header as='h5' className='text-white bg-dark'>
 					{this.props.gallery.name}
 				</Card.Header>
@@ -100,7 +100,7 @@ class Gallery extends Component {
 						</Button>
 					</div>
 				</Card.Body>
-			</Card>
+			 </Card>
 
     );
   }
