@@ -128,6 +128,28 @@ redirect = () => {
   this.props.history.push(`/gallery/user-galleries/${ this.state.user_id }`)
 }
 
+// Delete a Gallery
+handleDelete = (event) => {
+  event.preventDefault();
+  const {name, category, allCheckedAds, user_id} = this.state;
+
+  const gallery = {
+    name: name,
+    category: category,
+    ad_ids: allCheckedAds,
+    user_id: user_id
+  };
+
+  const SERVER_URL = 'https://campaign-markt.herokuapp.com/galleries/'+ this.state.galleryId +'.json';
+  // const SERVER_URL = 'http://localhost:3001/galleries/'+ this.state.galleryId +'.json';
+  axios.delete(SERVER_URL, {gallery}, {withCredentials: true}).then((result) => {
+    console.log(result);
+    console.log(result.data);
+    this.redirect();
+  })
+
+}
+
   render() {
     return(
       <div>
@@ -154,10 +176,15 @@ redirect = () => {
 
              )}
           </form>
-
+              <div>
                 <input type="submit" value="Create"className="btn btn-success mb-3" />
-
+              </div>
           </form>
+
+          <form onSubmit={this.handleDelete}>
+            <input type="submit" value="Delete" className="btn btn-success mb-3"/>
+          </form>
+
       </div>
     );
   }
