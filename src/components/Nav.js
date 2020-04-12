@@ -62,16 +62,26 @@ class Navigation extends Component {
                 <NavDropdown title={
                     <span className="dropdown-style">{this.props.user.name}</span>
                 } id="basic-nav-dropdown" className="nav-links nav-style">
-                  <NavDropdown.Item>
-                    <Nav.Link as={Link} to="/ads/new">
-                      Create Ad
-                    </Nav.Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item>
-                    <Nav.Link as={Link} to={`/ads/company-ads/${this.props.user.company_id}`}>
-                      Company Ads
-                    </Nav.Link>
-                  </NavDropdown.Item>
+                  {(this.props.user.company_id !== null)
+                    ? (
+                      <>
+                        <NavDropdown.Item>
+                          <Nav.Link as={Link} to="/ads/new">
+                            Create Ad
+                          </Nav.Link>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                          <Nav.Link as={Link} to={`/ads/company-ads/${this.props.user.company_id}`}>
+                            Company Ads
+                          </Nav.Link>
+                        </NavDropdown.Item>
+                      </>
+
+                    )
+                    : (
+                      console.log('company false')
+                    )
+                  }
                     <NavDropdown.Item>
                       <Nav.Link as={Link} to="/gallery/new">
                         Create Gallery
@@ -81,7 +91,7 @@ class Navigation extends Component {
                       <Nav.Link as={Link} to={`/gallery/user-galleries/${this.props.user.id}`}>
                         My Galleries
                       </Nav.Link>
-                    </NavDropdown.Item> 
+                    </NavDropdown.Item>
                     {this.props.user.admin
                       ? (
                           <NavDropdown.Item>
@@ -91,7 +101,7 @@ class Navigation extends Component {
                           </NavDropdown.Item>
                         )
                       : (
-                        console.log('ok')
+                        console.log('admin false')
                       )
                     }
                     <NavDropdown.Divider />
