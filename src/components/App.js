@@ -18,6 +18,7 @@ import CreateCompany from './CreateCompany';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios'
 import Permission from './Permission';
+import PermissionAdmin from './PermissionAdmin';
 
 import { Container } from "react-bootstrap";
 
@@ -86,7 +87,9 @@ class App extends Component {
                 <Route path="/ads/edit/:adId" render={props => (<EditAd {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
                 <Route exact path="/ads/company-ads/:companyId" render={props => (<CompanyAds {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}/>)} />
 
-                <Route path="/createcompany" component={ CreateCompany } />
+                <PermissionAdmin {...this.props} user={this.state.user} >
+                  <Route path="/createcompany" component={ CreateCompany } />
+                </PermissionAdmin>
               </Permission>
             </Switch>
           </Container>
