@@ -96,7 +96,7 @@ class Navigation extends Component {
                       ? (
                           <NavDropdown.Item>
                             <Nav.Link as={Link} to={`/createcompany`}>
-                              Create Company
+                              Company Manage
                             </Nav.Link>
                           </NavDropdown.Item>
                         )

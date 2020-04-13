@@ -186,3 +186,30 @@ DATABAR STYLING
 .cd-box {
   width: 100%;
 }
+
+/* =======================
+COMPANY PAGE STYLING
+======================= */
+.edit-company {
+  display: flex;
+
+}
+
+.company-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.company-list td, .company-list th {
+  border: 1px solid #ddd;
+}
+
+.company-list th {
+  padding: 5rem auto;
+  text-align: left;
+  background-color: lightgrey;
+}
+
+.company-list tr:hover {
+  background-color: #ddd;
+}
