@@ -113,9 +113,11 @@ class Gallery extends Component {
             <Link to={`/survey/${this.props.gallery.id}`}>
                <Button variant="success">Start Survey</Button>
              </Link>
+
              <Link to={`/stats/${this.props.gallery.id}`}>
                <Button variant="info">See Responses</Button>
              </Link>
+
              <Link to={`/gallery/edit/${this.props.gallery.id}`}>
                <Button variant="warning">Edit</Button>
              </Link>

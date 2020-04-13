@@ -104,6 +104,7 @@ redirect = () => {
              <Form.Label>Gallery</Form.Label>
              <Form.Control name="name" type="text" placeholder="Gallery name" value={ this.state.name } onChange={ this.handleChange } autoFocus required />
           </Form.Group>
+
           <Form.Group className="w-50">
              <Form.Label>Type</Form.Label>
              <Form.Control name="category" type="text" placeholder="Type" value={ this.state.category } onChange={ this.handleChange } autoFocus required />
