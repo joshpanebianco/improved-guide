@@ -66,15 +66,21 @@ class UserGalleries extends Component {
     return (
       <div>
         <h1>My Galleries</h1>
-        {isFetching
-          ? <p>Loading Gallery</p>
-          : <div>
-            {this.state.galleries.map ((gallery) => {
+          <Container>
+              {isFetching
+                ? <p>Loading Gallery</p>
+                : <Row>
+                  {this.state.galleries.map ((gallery) => {
 
-                    return (<Gallery key={gallery.id} gallery={gallery} companyImage={this.state.companyLogo}/>)
-                  })}
-          </div>
-        }
+                          return (
+                            <Col lg={4}>
+                              <Gallery key={gallery.id} gallery={gallery} companyImage={this.state.companyLogo}/>
+                            </Col>
+                          )
+                        })}
+                </Row>
+              }
+          </Container>
       </div>
     );
   }
@@ -85,26 +91,26 @@ class Gallery extends Component {
 
   render() {
     return (
-      <Card className="w-25 mb-4" >
+      <Card className='mb-4' >
 
         <Card.Header as="h5" className="text-white bg-dark">{this.props.gallery.name}</Card.Header>
         <Card.Body className='d-flex align-items-center shadow explore-card'>
-
           <div className={'in-card card-left'}>
           {this.props.companyImage
             ? <Card.Text>
-              <img
-              className='img-logo'
-              src={this.props.companyImage}
-              alt='Company logo'
-              />
-              </Card.Text> 
+                <img
+                className='img-logo'
+                src={this.props.companyImage}
+                alt='Company logo'
+                />
+              </Card.Text>
             : <Card.Text>
-              <img
-              className='img-logo'
-              src={this.props.companyImage}
-              alt='Company logo'
-              />
+                <img
+                className='img-logo'
+                style={{ 'border-radius': '20rem' }}
+                src='https://images.all-free-download.com/images/graphiclarge/seamless_fish_scale_pattern_vector_312456.jpg'
+                alt='Company logo'
+                />
               </Card.Text>
         }
 
@@ -113,13 +119,14 @@ class Gallery extends Component {
           </div>
           <div className={'in-card card-right'}>
           <Link to={`/survey/${this.props.gallery.id}`}>
-             <Button className="mr-3" variant="success">Start Survey</Button>
+             <Button variant="success">Start Survey</Button>
            </Link>
            <Link to={`/stats/${this.props.gallery.id}`}>
              <Button variant="info">See Responses</Button>
            </Link>
-            <Link to={`/gallery/edit/${this.props.gallery.id}`}>Edit</Link>
-
+            <Link to={`/gallery/edit/${this.props.gallery.id}`}>
+            <Button variant="warning">Edit</Button>
+            </Link>
           </div>
 
         </Card.Body>
