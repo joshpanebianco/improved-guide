@@ -89,15 +89,24 @@ class Gallery extends Component {
 
         <Card.Header as="h5" className="text-white bg-dark">{this.props.gallery.name}</Card.Header>
         <Card.Body className='d-flex align-items-center shadow explore-card'>
-          <div className={'in-card card-left'}>
 
-              <Card.Text>
-                <img
-                  className='img-logo'
-                  src={this.props.companyImage}
-                  alt='Company logo'
-                />
+          <div className={'in-card card-left'}>
+          {this.props.companyImage
+            ? <Card.Text>
+              <img
+              className='img-logo'
+              src={this.props.companyImage}
+              alt='Company logo'
+              />
+              </Card.Text> 
+            : <Card.Text>
+              <img
+              className='img-logo'
+              src={this.props.companyImage}
+              alt='Company logo'
+              />
               </Card.Text>
+        }
 
 
             <Card.Title>{this.props.gallery.category}</Card.Title>

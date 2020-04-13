@@ -67,7 +67,9 @@ class CompanyAds extends Component {
                   )
                 })
               }
-              <Link to="/explore">Check out other galleries</Link>
+              <Link className="d-flex justify-content-center" to="/explore">
+               <Button variant="success">Check out other galleries</Button>
+              </Link>
             </div>
           )
         }
@@ -88,15 +90,19 @@ const AdResult = (props) => {
              <Card.Text>
                <img className="survey-img" src={props.ad.image}/>
              </Card.Text>
-            <Link to={`/ads/edit/${props.ad.id}`}>Edit</Link>
+            <Link to={`/ads/edit/${props.ad.id}`}>
+              <Button variant="warning">Edit</Button>
+            </Link>
            </Card.Body>
           </Card>
-          <Card className="w-75 mb-4 text-center justify-content-center">
-            <Card.Body className="justify-content-center">
-              <Card.Title>Ad Stats</Card.Title>
-              <Card.Text>Have Seen / Have Not Seen</Card.Text>
-              <DataBar history={props.history}/>
-              <small>Total Responses: {props.history.total}</small>
+          <Card className="w-75 mb-4 text-center justify-content-center align-items-center">
+            <Card.Body className="justify-content-center align-items-center">
+              <div className="mt-5">
+                <Card.Title>Ad Stats</Card.Title>
+                <Card.Text>Have Seen / Have Not Seen</Card.Text>
+                <DataBar history={props.history}/>
+                <small>Total Responses: {props.history.total}</small>
+              </div>
             </Card.Body>
            </Card>
        </CardGroup>
