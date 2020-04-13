@@ -46,19 +46,20 @@ class Home extends Component {
       <div>
         <h1>Explore Galleries</h1>
         <Container>
-          <Row>
-
              {isFetching
                ? <p>Loading Galleries</p>
-               : <div>
+               : <Row>
                  {this.state.galleries.map ((gallery, index) => {
                          const company = this.state.companies[index]
-                         return (<Gallery key={gallery.id} gallery={gallery} company={company} />)
-                       })}
-               </div>
-             }
+                         return (
+                           <Col lg={4}>
+                             <Gallery key={gallery.id} gallery={gallery} company={company} />
+                           </Col>
 
-          </Row>
+                         )
+                       })}
+               </Row>
+             }
         </Container>
       </div>
     );
@@ -71,13 +72,14 @@ class Gallery extends Component {
   render() {
     return (
 
-      <Card className='mb-4'>
+      <Card className='mb-4' >
 				<Card.Header as='h5' className='text-white bg-dark'>
 					{this.props.gallery.name}
 				</Card.Header>
 				<Card.Body className='d-flex align-items-center shadow explore-card'>
 					<div className={'in-card card-left'}>
-						{this.props.company && (
+						{this.props.company
+              ? (
 							<Card.Text>
 								<img
 									className='img-logo'
@@ -85,7 +87,18 @@ class Gallery extends Component {
 									alt='Company logo'
 								/>
 							</Card.Text>
-						)}
+						)
+          : (
+            <Card.Text>
+              <img
+                className='img-logo'
+                style={{ 'border-radius': '20rem' }}
+                src='https://images.all-free-download.com/images/graphiclarge/seamless_fish_scale_pattern_vector_312456.jpg'
+                alt='Company logo'
+              />
+            </Card.Text>
+          )
+        }
 						<Card.Title>{this.props.gallery.category}</Card.Title>
 					</div>
 					<div className={'in-card card-right'}>
@@ -101,7 +114,7 @@ class Gallery extends Component {
 					</div>
 				</Card.Body>
 			 </Card>
-    
+
     );
   }
 }
