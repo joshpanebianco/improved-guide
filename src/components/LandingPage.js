@@ -25,7 +25,7 @@ class LandingPage extends Component {
 
 				<div className="quote-section my-5">
 					<blockquote className="blockquote text-center">
-					 <p className="mb-0">“Unless your advertising has a big idea, it will pass like a ship in the night youare right”</p>
+					 <p className="mb-0">“Unless your advertising has a big idea, it will pass like a ship in the night”</p>
 					 <footer className="blockquote-footer">David Ogilvy<cite title="Source Title"></cite></footer>
 				 </blockquote>
 				</div>
