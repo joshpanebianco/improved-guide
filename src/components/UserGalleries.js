@@ -22,7 +22,9 @@ class UserGalleries extends Component {
     this.state = {
       isFetching: false,
       galleries: [],
-      user_id: props.user.id
+      user_id: props.user.id,
+      company_id: props.user.company_id,
+      companyLogo: {}
     }
   }
 
@@ -39,10 +41,24 @@ class UserGalleries extends Component {
     })
   }
 
+  fetchCompanyLogo = () => {
+    const SERVER_URL = 'https://campaign-markt.herokuapp.com/requests/companies/'+ this.state.company_id + ".json";
+    // const SERVER_URL = 'http://localhost:3001/requests/companies/'+ this.state.company_id;
+    this.setState({...this.state, isFetching: true});
+    axios.get(SERVER_URL, {withCredentials: true}).then(results => {
+      this.setState({companyLogo: results.data.company.image});
+      console.log(this.state.companyLogo);
+      this.setState({...this.state, isFetching: false});
+    })
+  }
+
   // Fetch ads on page load
   componentDidMount() {
-    this.fetchGalleries()
+    this.fetchGalleries();
+    this.fetchCompanyLogo();
   }
+
+
 
 
   render() {
@@ -50,15 +66,21 @@ class UserGalleries extends Component {
     return (
       <div>
         <h1>My Galleries</h1>
-        {isFetching
-          ? <p>Loading Galleries</p>
-          : <div>
-            {this.state.galleries.map ((gallery) => {
+          <Container>
+              {isFetching
+                ? <p>Loading Gallery</p>
+                : <Row>
+                  {this.state.galleries.map ((gallery) => {
 
-                    return (<Gallery key={gallery.id} gallery={gallery} />)
-                  })}
-          </div>
-        }
+                          return (
+                            <Col lg={4}>
+                              <Gallery key={gallery.id} gallery={gallery} companyImage={this.state.companyLogo}/>
+                            </Col>
+                          )
+                        })}
+                </Row>
+              }
+          </Container>
       </div>
     );
   }
@@ -69,43 +91,46 @@ class Gallery extends Component {
 
   render() {
     return (
-
-      <Card className="w-50 mb-4">
+      <Card className='mb-4' >
 
         <Card.Header as="h5" className="text-white bg-dark">{this.props.gallery.name}</Card.Header>
-        <Card.Body className="d-flex align-items-center shadow">
-          <Container>
-            <Row>
-              <Col>
-                <div className="d-flex justify-content-start align-items-center">
-                  <Card.Title>{this.props.gallery.category}</Card.Title>
-                </div>
-              </Col>
-            </Row>
-
-            <Row>
-              <Col>
-                <div className="d-flex justify-content-start">
-                  <Link to={`/survey/${this.props.gallery.id}`}>
-                    <Button className="mr-3" variant="success">Start Survey</Button>
-                  </Link>
-
-                  <Link to={`/stats/${this.props.gallery.id}`}>
-                    <Button className="mr-3" variant="info">See Responses</Button>
-                  </Link>
-
-                  <Link to={`/gallery/edit/${this.props.gallery.id}`}>
-                   <Button variant="warning">Edit</Button>
-                  </Link>
-                </div>
-              </Col>
-            </Row>
+        <Card.Body className='d-flex align-items-center shadow explore-card'>
+          <div className={'in-card card-left'}>
+          {this.props.companyImage
+            ? <Card.Text>
+                <img
+                className='img-logo'
+                src={this.props.companyImage}
+                alt='Company logo'
+                />
+              </Card.Text>
+            : <Card.Text>
+                <img
+                className='img-logo'
+                style={{ 'border-radius': '20rem' }}
+                src='https://images.all-free-download.com/images/graphiclarge/seamless_fish_scale_pattern_vector_312456.jpg'
+                alt='Company logo'
+                />
+              </Card.Text>
+        }
 
 
-          </Container>
+            <Card.Title>{this.props.gallery.category}</Card.Title>
+          </div>
+          <div className={'in-card card-right'}>
+          <Link to={`/survey/${this.props.gallery.id}`}>
+             <Button variant="success">Start Survey</Button>
+           </Link>
+           <Link to={`/stats/${this.props.gallery.id}`}>
+             <Button variant="info">See Responses</Button>
+           </Link>
+            <Link to={`/gallery/edit/${this.props.gallery.id}`}>
+            <Button variant="warning">Edit</Button>
+            </Link>
+          </div>
+
         </Card.Body>
        </Card>
-
     );
   }
 }

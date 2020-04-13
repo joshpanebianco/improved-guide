@@ -93,8 +93,12 @@ redirect = () => {
 }
 
   render() {
+    const isFetching = this.state.isFetching;
     return(
       <div>
+      {isFetching
+      ? <p>Loading Create Gallery</p>
+      : <div>
          <h3>Create Gallery</h3>
           <form onSubmit={ this.handleSubmit }>
           <Form.Group className="w-50">
@@ -115,7 +119,10 @@ redirect = () => {
           </form>
                 <input type="submit" value="Create"className="btn btn-success mb-3" />
           </form>
+        </div>
+      }
       </div>
+
     );
   }
 }
