@@ -34,8 +34,7 @@ class UserGalleries extends Component {
     this.setState({...this.state, isFetching: true});
     axios.get(SERVER_URL, {withCredentials: true}).then(results => {
       this.setState({
-        galleries: results.data.galleries,
-
+        galleries: results.data.galleries
       });
       this.setState({...this.state, isFetching: false});
     })
@@ -58,9 +57,6 @@ class UserGalleries extends Component {
     this.fetchCompanyLogo();
   }
 
-
-
-
   render() {
     const isFetching = this.state.isFetching;
     return (
@@ -71,13 +67,12 @@ class UserGalleries extends Component {
                 ? <p>Loading Gallery</p>
                 : <Row>
                   {this.state.galleries.map ((gallery) => {
-
-                          return (
-                            <Col lg={4}>
-                              <Gallery key={gallery.id} gallery={gallery} companyImage={this.state.companyLogo}/>
-                            </Col>
-                          )
-                        })}
+                      return (
+                        <Col lg={4}>
+                          <Gallery key={gallery.id} gallery={gallery} companyImage={this.state.companyLogo}/>
+                        </Col>
+                      )
+                  })}
                 </Row>
               }
           </Container>
@@ -88,15 +83,13 @@ class UserGalleries extends Component {
 
 
 class Gallery extends Component {
-
   render() {
     return (
       <Card className='mb-4' >
-
         <Card.Header as="h5" className="text-white bg-dark">{this.props.gallery.name}</Card.Header>
         <Card.Body className='d-flex align-items-center shadow explore-card'>
           <div className={'in-card card-left'}>
-          {this.props.companyImage
+            {this.props.companyImage
             ? <Card.Text>
                 <img
                 className='img-logo'
@@ -112,25 +105,23 @@ class Gallery extends Component {
                 alt='Company logo'
                 />
               </Card.Text>
-        }
-
-
-            <Card.Title>{this.props.gallery.category}</Card.Title>
+          }
+              <Card.Title>{this.props.gallery.category}</Card.Title>
           </div>
+
           <div className={'in-card card-right'}>
-          <Link to={`/survey/${this.props.gallery.id}`}>
-             <Button variant="success">Start Survey</Button>
-           </Link>
-           <Link to={`/stats/${this.props.gallery.id}`}>
-             <Button variant="info">See Responses</Button>
-           </Link>
-            <Link to={`/gallery/edit/${this.props.gallery.id}`}>
-            <Button variant="warning">Edit</Button>
-            </Link>
+            <Link to={`/survey/${this.props.gallery.id}`}>
+               <Button variant="success">Start Survey</Button>
+             </Link>
+             <Link to={`/stats/${this.props.gallery.id}`}>
+               <Button variant="info">See Responses</Button>
+             </Link>
+             <Link to={`/gallery/edit/${this.props.gallery.id}`}>
+               <Button variant="warning">Edit</Button>
+             </Link>
           </div>
-
         </Card.Body>
-       </Card>
+      </Card>
     );
   }
 }

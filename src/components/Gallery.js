@@ -37,9 +37,9 @@ fetchAdds = () => {
   })
 }
 
-  componentDidMount() {
-    this.fetchAdds();
-  }
+componentDidMount() {
+  this.fetchAdds();
+}
 
 
 handleCheck = (event) => {
@@ -82,9 +82,8 @@ console.log(gallery);
 const SERVER_URL = 'https://campaign-markt.herokuapp.com/galleries';
 // const SERVER_URL = 'http://localhost:3001/galleries';
   axios.post(SERVER_URL, {gallery}, {withCredentials: true}).then((response) => {
-
-  console.log("SUBMITTED");
-  this.redirect();
+    console.log("SUBMITTED");
+    this.redirect();
   })
 
 }
@@ -94,7 +93,7 @@ redirect = () => {
 
   render() {
     const isFetching = this.state.isFetching;
-    return(
+    return (
       <div>
       {isFetching
       ? <p>Loading Create Gallery</p>
@@ -110,14 +109,14 @@ redirect = () => {
              <Form.Control name="category" type="text" placeholder="Type" value={ this.state.category } onChange={ this.handleChange } autoFocus required />
           </Form.Group>
 
-          <form onChange={this.handleCheck} >
-            {this.state.allAds.map((ad) =>
-              <div key={ad.id} className="mb-3">
-              <Form.Check name="allCheckedAds" type="checkbox" id="default-checkbox" label={ad.name} value={ad.id} />
-              </div>
-             )}
-          </form>
-                <input type="submit" value="Create"className="btn btn-success mb-3" />
+            <form onChange={this.handleCheck} >
+              {this.state.allAds.map((ad) =>
+                <div key={ad.id} className="mb-3">
+                  <Form.Check name="allCheckedAds" type="checkbox" id="default-checkbox" label={ad.name} value={ad.id} />
+                </div>
+               )}
+            </form>
+            <input type="submit" value="Create"className="btn btn-success mb-3" />
           </form>
         </div>
       }
@@ -126,7 +125,6 @@ redirect = () => {
     );
   }
 }
-
 
 
 export default Gallery;
