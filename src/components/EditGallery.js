@@ -151,40 +151,45 @@ handleDelete = (event) => {
 }
 
   render() {
+    const isFetching = this.state.isFetching;
     return(
       <div>
-        <h3>Edit Gallery</h3>
-          <form onSubmit={ this.handleSubmit }>
-          <Form.Group className="w-50">
-             <Form.Label>Gallery</Form.Label>
-             <Form.Control name="name" type="text" placeholder="Gallery name" value={ this.state.name } onChange={ this.handleChange } autoFocus required />
-          </Form.Group>
-          <Form.Group className="w-50">
-             <Form.Label>Type</Form.Label>
-             <Form.Control name="category" type="text" placeholder="Type" value={ this.state.category } onChange={ this.handleChange } autoFocus required />
-          </Form.Group>
+        {isFetching
+        ? <p>Loading Edit Gallery</p>
+        : <div>
+            <h3>Edit Gallery</h3>
+              <form onSubmit={ this.handleSubmit }>
+              <Form.Group className="w-50">
+                 <Form.Label>Gallery</Form.Label>
+                 <Form.Control name="name" type="text" placeholder="Gallery name" value={ this.state.name } onChange={ this.handleChange } autoFocus required />
+              </Form.Group>
+              <Form.Group className="w-50">
+                 <Form.Label>Type</Form.Label>
+                 <Form.Control name="category" type="text" placeholder="Type" value={ this.state.category } onChange={ this.handleChange } autoFocus required />
+              </Form.Group>
 
-          <form onChange={this.handleCheck} >
-            {this.state.allAds.map((ad, index) =>
-              {
-                return (
-                <div key={ad.id} className="mb-3">
-                <Form.Check name="allCheckedAds" type="checkbox" id="default-checkbox" label={ad.name} value={ad.id} checked={ this.state.isAdChecked[index] } onChange={() => this.toggleChange(index) } />
+              <form onChange={this.handleCheck} >
+                {this.state.allAds.map((ad, index) =>
+                  {
+                    return (
+                    <div key={ad.id} className="mb-3">
+                    <Form.Check name="allCheckedAds" type="checkbox" id="default-checkbox" label={ad.name} value={ad.id} checked={ this.state.isAdChecked[index] } onChange={() => this.toggleChange(index) } />
 
-                 </div>)
-               }
+                     </div>)
+                   }
 
-             )}
-          </form>
-              <div>
-                <input type="submit" value="Create"className="btn btn-success mb-3" />
-              </div>
-          </form>
+                 )}
+              </form>
+                  <div>
+                    <input type="submit" value="Create"className="btn btn-success mb-3" />
+                  </div>
+              </form>
 
-          <form onSubmit={this.handleDelete}>
-            <input type="submit" value="Delete" className="btn btn-success mb-3"/>
-          </form>
-
+              <form onSubmit={this.handleDelete}>
+                <input type="submit" value="Delete" className="btn btn-success mb-3"/>
+              </form>
+            </div>
+          }
       </div>
     );
   }
