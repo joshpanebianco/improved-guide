@@ -30,10 +30,18 @@ class CreateCompany extends Component {
 
   fetchCompanies = () => {
     console.log('fetching')
-    axios.get(globalSetting.SERVER_URL + 'companies/' + this.state.companyId + '.json')
+    axios.get(globalSetting.SERVER_URL + 'companies' + '.json')
     .then(response => {
       const companies = response.data.companies;
       this.setState({companies: companies})
+    })
+  }
+
+  resetForm = () => {
+    this.setState({
+      name: '',
+      description: '',
+      image: ''
     })
   }
 
@@ -61,11 +69,7 @@ class CreateCompany extends Component {
     axios.post(globalSetting.SERVER_URL + 'companies', {company}, {withCredentials: true})
     .then(response => {
       this.fetchCompanies();
-      this.setState({
-        name: '',
-        description: '',
-        image: ''
-      })
+      this.resetForm();
     })
   }
 
@@ -74,6 +78,8 @@ class CreateCompany extends Component {
     axios.delete(globalSetting.SERVER_URL + 'companies/' + companyId + '.json', {withCredentials: true})
     .then(response => {
       this.fetchCompanies();
+      this.resetForm();
+      this.setState({editing: false})
     })
   }
 
@@ -101,6 +107,7 @@ class CreateCompany extends Component {
     .then(response => {
       this.fetchCompanies();
       this.setState({editing: false})
+      this.resetForm()
     })
   }
 
