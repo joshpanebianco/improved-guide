@@ -104,7 +104,7 @@ class CreateAd extends Component {
 
             <Form.Group className="w-50">
               <Form.Label>Company</Form.Label>
-              <Form.Control plaintext readOnly defaultValue={this.state.company.name}></Form.Control>
+              <Form.Control name="company" type="text" plaintext readOnly defaultValue={this.state.company.name}></Form.Control>
             </Form.Group>
 
             <Form.Group className="w-50">
