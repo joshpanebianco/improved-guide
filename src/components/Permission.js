@@ -11,7 +11,7 @@ class Permission extends React.Component {
             {this.props.children}
           </div>
           : <div>
-              <Redirect to="/login" />
+              <Redirect to="/landingpage" />
           </div>
         }
       </div>

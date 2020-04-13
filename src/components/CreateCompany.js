@@ -30,7 +30,7 @@ class CreateCompany extends Component {
 
   fetchCompanies = () => {
     console.log('fetching')
-    axios.get(globalSetting.SERVER_URL + 'companies')
+    axios.get(globalSetting.SERVER_URL + 'companies/' + this.state.companyId + '.json')
     .then(response => {
       const companies = response.data.companies;
       this.setState({companies: companies})
@@ -87,18 +87,20 @@ class CreateCompany extends Component {
     })
   }
 
-  handleUpdate = () => {
+  handleUpdate = (event) => {
+    event.preventDefault();
     const {name, description, image} = this.state
     const company = {
       name: name,
       description: description,
       image: image
     }
-    axios.put(globalSetting.SERVER_URL + 'companies/' + this.state.companyId + '.json',
+    axios.patch(globalSetting.SERVER_URL + 'companies/' + this.state.companyId + '.json',
      {company},
      {withCredentials:true})
     .then(response => {
       this.fetchCompanies();
+      this.setState({editing: false})
     })
   }
 
