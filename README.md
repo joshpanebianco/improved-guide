@@ -1,5 +1,5 @@
 ## Project Model
-<img src="./public/model.png">
+<img src="./public/model.png" width="50%">
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
